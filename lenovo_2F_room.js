@@ -3882,6 +3882,9 @@ var dataJson={
 		depth: 100,
 		translate: [100, 	0, 1200],	
 	},
+	
+	
+	
 	{
 		type: 'wall',
 		height: 200,		
@@ -3932,6 +3935,8 @@ var dataJson={
 		}
 		
 ],},
+
+
 	{
 	type: 'wall',
 		height: 200,		
@@ -3943,14 +3948,16 @@ var dataJson={
 		{
 			type: 'window',
 //			translate: [200, 30, 650],
-			translate: [500, 0, 10],
+			translate: [500, 0, 10],  //   --------------
 			width: 1050,
-			height: 200,
+			height: 220,
 			depth: 50, 
 			r: Math.PI,
 		},
 
 ],
+
+
     },
 	{
 	type: 'wall',
@@ -3968,15 +3975,17 @@ var dataJson={
 		children: [
 		{
 			type: 'window',
-			translate: [300, 20, 50],
+			translate: [300, 0, 50],  //---------------
 			width: 1000,
-			height: 200,
+			height: 220,
 			depth: 80, 
 			r: Math.PI,
 		},
 
 ],
     },
+    
+    
     {
 	type: 'wall',
 		height: 200,		
@@ -3986,15 +3995,16 @@ var dataJson={
 		children: [
 		{
 			type: 'window',
-			translate: [650, 20, 80],
-			width: 200,
-			height: 200,
+			translate: [750, 0, 0],  //----------------
+			width: 500,
+			height: 220,
 			depth: 50, 
 			r: 0
 		},
 
 ],
     },
+    
 	{
 		type: 'desks',
 		shadow: false,
