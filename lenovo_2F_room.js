@@ -877,6 +877,7 @@ var demo = {
 		}
 
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
+		server.setRotation(0, Math.PI/180 * 90, 0);
 		server.setClient('animation', 'pullOut.z');
 		server.setClient('type','drawer');
 		server.setClient('dbl.func', demo.showCardTable);
@@ -905,6 +906,7 @@ var demo = {
 					'color': cardColor
 				};
 				var card=demo.createCard(params);
+				//card.setRotation(0, Math.PI/180 * 180, 0);
 				box.add(card);
 
 				card.setParent(server);	
@@ -2182,20 +2184,20 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
-//demo.registerFilter('floor_box', function(box, json){
-//	return {
-//		type: 'cube',
-//		width: 100,
-//		height: 100,
-//		depth: 100,
-//		shadow: true,
-//		sideColor: '#C3D5EE',
-//		topColor: '#D6E4EC',
-//		client: {
-//			type: 'floor_box'
-//		}
-//	};
-//});
+demo.registerFilter('floor_box', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		client: {
+			type: 'floor_box'
+		}
+	};
+});
 
 demo.registerFilter('plants', function(box, json){
 	var objects=[];
@@ -2819,7 +2821,7 @@ demo.registerCreator('rack', function(box, json){
 	rack.setClient('type', 'rack');
 	rack.setClient('origin', rack.getPosition().clone());
 	rack.setClient('loaded', false);
-	rack.setRotation(0, Math.PI/180 * 270, 0);
+	rack.setRotation(0, Math.PI/180 * 90, 0);
 	rack.shadow = shadow;
 
 	var rackDoor = new mono.Cube(width, height, 2);
@@ -3877,8 +3879,8 @@ var dataJson={
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
 		type: 'floor_box',
-		width: 300,
-		height: 100,
+		width: 150,
+		height: 300,
 		depth: 100,
 		translate: [100, 	0, 1200],	
 	},
