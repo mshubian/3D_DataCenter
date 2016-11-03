@@ -2325,6 +2325,8 @@ demo.registerFilter('window', function(box, json){
 	var platformHeight=5,
 		platformDepth=45,
 		platformOffsetZ=10;
+		
+	var r = json.r || 0;
 
 	return [{
 		// window cut off
@@ -2333,7 +2335,7 @@ demo.registerFilter('window', function(box, json){
 		height: height,
 		depth: depth, 
 		translate: [x, y, z],
-		rotate: [0, Math.PI/2, 0],
+		rotate: [0, r/2, 0],
 		op: '-',
 		sideColor: '#B8CAD5',
 		topColor: '#D6E4EC',		
@@ -2345,7 +2347,7 @@ demo.registerFilter('window', function(box, json){
 		height: height-0.5,
 		depth: glassDepth,
 		translate: [x, y, z],
-		rotate: [0, Math.PI/2, 0],
+		rotate: [0, r/2, 0],
 		op: '+',
 		style: {			
 			'm.color':'#58ACFA',
@@ -2367,7 +2369,7 @@ demo.registerFilter('window', function(box, json){
 		height: platformHeight,
 		depth: platformDepth, 
 		translate: [x, y, z+platformOffsetZ],
-		rotate: [0, Math.PI/2, 0],
+		rotate: [0, r/2, 0],
 		op: '+',
 		sideColor: '#A5BDDD',
 		topColor: '#D6E4EC',
@@ -3881,34 +3883,22 @@ var dataJson={
 		height: 100,
 		depth: 100,
 		translate: [100, 	0, 1200],	
-	},{
+	},
+	{
 		type: 'wall',
 		height: 200,		
 		translate: [-500, 0, -500],
 		
-		data:[[-350, -400], [-100 ,-400 ], 
-		[ -100,-50 ],[ 60, -50 ],[ 60,-150 ]  ,  
-		[1200, -150], [1200, -50],[1300, -50],   
-		[1300, 1050],[1200, 1050], [1200, 1150],
-		[100, 1150],[100, 1050], [-100, 1050],[-100, 1150],
-		[-350, 1150],
-		[-350,-400]],   // x, y
+		data:[[-350, -400], [1000 ,-400 ], 
+		
+		[ 1000,-100 ],[ 1300, -100 ],[1300, 1000 ] ,
+		
+		[1000, 1000], [1000, 1300],[-100 ,1300],
+		
+		[-100, 1000], [-350, 1000],[-350, -400]],
+		
 		children: [
-		{
-			type: 'window',
-			translate: [-600,30,700],
-			width: 250,
-			height: 150,
-			depth: 50, 
-		},
-		{
-			type: 'window',
-//			translate: [200, 30, 650],
-			translate: [800, 0, 10],
-			width: 1050,
-			height: 200,
-			depth: 50, 
-		},
+
 //		{
 //			type: 'door',
 //			width: 130,
@@ -3925,7 +3915,7 @@ var dataJson={
 			width: 130,
 			height: 180,
 			depth: 26,
-			translate: [-850,0,30],
+			translate: [-850,0,600],
 			rotation: Math.PI,
 			p1: 30,
 			p2: 30,
@@ -3936,17 +3926,80 @@ var dataJson={
 			width: 130,
 			height: 180,
 			depth: 26,
-			translate: [-700,0,900],
+			translate: [400,0,900],
 			rotation: 0,
 			p1: 0,
 			p2: 0,			
 		}
-		],
-	},
+		
+],},
+	{
+	type: 'wall',
+		height: 200,		
+		translate: [-500, 0, -500],
+		
+		data:[ [ 1000,-100 ],    [ 1000, 1000 ], ],
+		children: [
+
+		{
+			type: 'window',
+//			translate: [200, 30, 650],
+			translate: [500, 0, 10],
+			width: 1050,
+			height: 200,
+			depth: 50, 
+			r: Math.PI,
+		},
+
+],
+    },
+	{
+	type: 'wall',
+		height: 200,		
+		translate: [-500, 0, -500],
+		
+		data:[ [ 1000,1000 ],    [ -100, 1000 ], ],
+    },
+    	{
+	type: 'wall',
+		height: 200,		
+		translate: [-500, 0, -500],
+		
+		data:[ [ 1000,500 ],    [ 1300, 500 ], ],
+		children: [
+		{
+			type: 'window',
+			translate: [300, 20, 50],
+			width: 1000,
+			height: 200,
+			depth: 80, 
+			r: Math.PI,
+		},
+
+],
+    },
+    {
+	type: 'wall',
+		height: 200,		
+		translate: [-500, 0, -500],
+		
+		data:[ [ 800,-400 ],    [ 800, 1000 ], ],
+		children: [
+		{
+			type: 'window',
+			translate: [650, 20, 80],
+			width: 200,
+			height: 200,
+			depth: 50, 
+			r: 0
+		},
+
+],
+    },
 	{
 		type: 'desks',
 		shadow: false,
-		translates: [[-200, 10, 1200],[-100, 10, 1200],[-100, 10, 1200]],
+		translates: [[-200, 10, 1200],[-100, 10, 1200],[-100, 10, 1200], ],
 	},
 	{
 //		type: 'plants',
