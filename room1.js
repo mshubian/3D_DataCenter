@@ -3190,37 +3190,37 @@ var csg4=new mono.CSG(cylinder3);
 var csg5=new mono.CSG(cylinder4);
 
 var csg=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csg.setPosition(-780, 50, -400) 
+csg.setPosition(-780, 100, -400) 
 var csga=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csga.setPosition(-780, 50, -300) 
+csga.setPosition(-780, 100, -300) 
 var csgb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgb.setPosition(-780, 50, -200)
+csgb.setPosition(-780, 100, -200)
 var csgbb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgbb.setPosition(-780, 50, -100)
+csgbb.setPosition(-780, 100, -100)
 var csgc=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgc.setPosition(-780, 50, 100) 
+csgc.setPosition(-780, 100, 100) 
 var csgd=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgd.setPosition(-780, 50, 200) 
+csgd.setPosition(-780, 100, 200) 
 var csge=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csge.setPosition(-780, 50, 300) 
+csge.setPosition(-780, 100, 300) 
 var csgf=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgf.setPosition(-780, 50, 400) 
+csgf.setPosition(-780, 100, 400) 
 var csgg=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgg.setPosition(-780, 50, 500) 
+csgg.setPosition(-780, 100, 500) 
 
 
 var aa=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-aa.setPosition(-350, 50, 580) 
+aa.setPosition(-350, 100, 580) 
 var bb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-bb.setPosition(-250, 50, 580) 
+bb.setPosition(-250, 100, 580) 
 var cc=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-cc.setPosition(-150, 50, 580) 
+cc.setPosition(-150, 100, 580) 
 var dd=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-dd.setPosition(-50, 50, 580) 
+dd.setPosition(-50, 100, 580) 
 var ee=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-ee.setPosition(50, 50, 580) 
+ee.setPosition(50, 100, 580) 
 var ff=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-ff.setPosition(150, 50, 580) 
+ff.setPosition(150, 100, 580) 
 
 box.add(csg);
 box.add(csga);
