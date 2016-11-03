@@ -3962,7 +3962,7 @@ var dataJson={
 	},{
 		type: 'plants',
 		shadow: true,
-		translates: [[560, 0, 400],[560, 0, 0],[60, 0, -100],[60, 0, -400],[-560, 0, 400],[-560, 0, 0],[-560, 0, -400]],
+		translates: [[560, 0, 350],[560, 0, 0],[560, 0, -340],[-70, 0, 350],[-70, 0, 0],[-70, 0, -340]],
 	},{
 		type: 'plants',		
 		scale: [0.5, 0.3, 0.5],
@@ -4036,7 +4036,7 @@ var dataJson={
 		translate: [-130, 100, 513],	
 	},{
 		type: 'post',
-		translate: [80, 110, 10],	
+		translate: [-200, 100, -635],
 		width: 70,
 		height: 120,
 		pic: demo.getRes('post.jpg'),
