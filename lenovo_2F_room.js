@@ -878,7 +878,7 @@ var demo = {
 
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
 		server.setRotation(0, Math.PI/180 * 90, 0);
-		server.setClient('animation', 'pullOut.z');
+		server.setClient('animation', 'pullOut.x');
 		server.setClient('type','drawer');
 		server.setClient('dbl.func', demo.showCardTable);
 		server.setPosition(0.5, 0, -5);
