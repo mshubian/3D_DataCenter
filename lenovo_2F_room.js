@@ -987,6 +987,29 @@ var demo = {
 		context.fillStyle = 'white';
 		context.fill();
 
+		var marker=function(context, text, text2, x, y){
+			var color='#0B2F3A';//'#0B2F3A';//'#FE642E';
+			context.font = 60+'px "Microsoft Yahei" bold';
+			context.fillStyle = color;
+			context.textAlign = 'center';
+			context.textBaseline = 'middle';
+			//context.shadowBlur = 30;
+			context.fillText(text, x, y);
+			context.strokeStyle=color;
+			context.lineWidth=3;
+			context.strokeText(text, x, y);
+
+			if(!text2) return;
+			y+=52;
+			color='#FE642E';
+			context.font = 26+'px "Microsoft Yahei" ';
+			context.fillStyle = color;
+			context.textAlign = 'center';
+			context.textBaseline = 'middle';
+			context.fillText(text2, x, y);
+		}
+		marker(context, 'Lenovo 2F Lab', '联想大厦', 1850, 1800);
+
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
 				var translate=object.getPosition() || {x:0, y:0, z:0};	
