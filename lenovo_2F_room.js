@@ -2184,20 +2184,20 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
-//demo.registerFilter('floor_box', function(box, json){
-//	return {
-//		type: 'cube',
-//		width: 100,
-//		height: 100,
-//		depth: 100,
-//		shadow: true,
-//		sideColor: '#C3D5EE',
-//		topColor: '#D6E4EC',
-//		client: {
-//			type: 'floor_box'
-//		}
-//	};
-//});
+demo.registerFilter('floor_box', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		client: {
+			type: 'floor_box'
+		}
+	};
+});
 
 demo.registerFilter('plants', function(box, json){
 	var objects=[];
@@ -3879,11 +3879,14 @@ var dataJson={
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
 		type: 'floor_box',
-		width: 300,
-		height: 100,
+		width: 150,
+		height: 300,
 		depth: 100,
 		translate: [100, 	0, 1200],	
 	},
+	
+	
+	
 	{
 		type: 'wall',
 		height: 200,		
@@ -3891,11 +3894,12 @@ var dataJson={
 		
 		data:[[-350, -400], [1000 ,-400 ], 
 		
-		[ 1000,-100 ],[ 1300, -100 ],[1300, 1000 ] ,
+		[ 1000,-100 ],[ 1500, -100 ],
+		[1500, 1200 ] ,
 		
-		[1000, 1000], [1000, 1300],[-100 ,1300],
+		[1000, 1200], [1000, 1300],[-100 ,1300],
 		
-		[-100, 1000], [-350, 1000],[-350, -400]],
+		[-100, 1200], [-350, 1200],[-350, -400]],
 		
 		children: [
 
@@ -3933,69 +3937,76 @@ var dataJson={
 		}
 		
 ],},
+
+
 	{
 	type: 'wall',
 		height: 200,		
 		translate: [-500, 0, -500],
 		
-		data:[ [ 1000,-100 ],    [ 1000, 1000 ], ],
+		data:[ [ 1000,-100 ],    [ 1000, 1200 ], ],
 		children: [
 
 		{
 			type: 'window',
 //			translate: [200, 30, 650],
-			translate: [500, 0, 10],
+			translate: [500, 0, 10],  //   --------------
 			width: 1050,
-			height: 200,
+			height: 220,
 			depth: 50, 
 			r: Math.PI,
 		},
 
 ],
+
+
     },
 	{
 	type: 'wall',
 		height: 200,		
 		translate: [-500, 0, -500],
 		
-		data:[ [ 1000,1000 ],    [ -100, 1000 ], ],
+		data:[ [ 1000,1200 ],    [ -100, 1200 ], ],
     },
     	{
 	type: 'wall',
 		height: 200,		
 		translate: [-500, 0, -500],
 		
-		data:[ [ 1000,500 ],    [ 1300, 500 ], ],
+		data:[ [ 1000,500 ],    [ 1500, 500 ], ],
 		children: [
 		{
 			type: 'window',
-			translate: [300, 20, 50],
+			translate: [300, 0, 50],  //---------------
 			width: 1000,
-			height: 200,
+			height: 220,
 			depth: 80, 
 			r: Math.PI,
 		},
 
 ],
     },
+    
+    
     {
 	type: 'wall',
 		height: 200,		
 		translate: [-500, 0, -500],
 		
-		data:[ [ 800,-400 ],    [ 800, 1000 ], ],
+		data:[ [ 800,-400 ],    [ 800, 1200 ], ],
 		children: [
 		{
 			type: 'window',
-			translate: [650, 20, 80],
-			width: 200,
-			height: 200,
+			translate: [750, 0, 0],  //----------------
+			width: 500,
+			height: 220,
 			depth: 50, 
 			r: 0
 		},
 
 ],
     },
+    
 	{
 		type: 'desks',
 		shadow: false,
