@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b031d868-4834-4700-8626-6df247157ea0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/room1.js" afterPath="$PROJECT_DIR$/room1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/room2.js" afterPath="$PROJECT_DIR$/room2.js" />
     </list>
     <ignored path="3D_DataCenter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,11 +22,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="room1.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="room1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/room1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="1043" column="31" selection-start-line="1043" selection-start-column="28" selection-end-line="1043" selection-end-column="31" />
+            <state relative-caret-position="302">
+              <caret line="1693" column="22" selection-start-line="1693" selection-start-column="22" selection-end-line="1693" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="room2.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/room2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3318">
+              <caret line="2927" column="0" selection-start-line="2927" selection-start-column="0" selection-end-line="2927" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -44,6 +54,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/room.js" />
         <option value="$PROJECT_DIR$/room1.js" />
+        <option value="$PROJECT_DIR$/room2.js" />
       </list>
     </option>
   </component>
@@ -296,11 +307,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/person.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/outside_lightmap.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -556,8 +562,16 @@
     <entry file="file://$PROJECT_DIR$/room.js" />
     <entry file="file://$PROJECT_DIR$/room1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="1043" column="31" selection-start-line="1043" selection-start-column="28" selection-end-line="1043" selection-end-column="31" />
+        <state relative-caret-position="302">
+          <caret line="1693" column="22" selection-start-line="1693" selection-start-column="22" selection-end-line="1693" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/room2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3318">
+          <caret line="2927" column="0" selection-start-line="2927" selection-start-column="0" selection-end-line="2927" selection-end-column="0" />
           <folding />
         </state>
       </provider>
