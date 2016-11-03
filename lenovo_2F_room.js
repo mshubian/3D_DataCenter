@@ -877,6 +877,7 @@ var demo = {
 		}
 
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
+		server.setRotation(0, Math.PI/180 * 90, 0);
 		server.setClient('animation', 'pullOut.z');
 		server.setClient('type','drawer');
 		server.setClient('dbl.func', demo.showCardTable);
@@ -905,6 +906,7 @@ var demo = {
 					'color': cardColor
 				};
 				var card=demo.createCard(params);
+				//card.setRotation(0, Math.PI/180 * 180, 0);
 				box.add(card);
 
 				card.setParent(server);	
@@ -984,6 +986,29 @@ var demo = {
 		context.rect(0, 0, floorWidth, floorHeight);
 		context.fillStyle = 'white';
 		context.fill();
+
+		var marker=function(context, text, text2, x, y){
+			var color='#0B2F3A';//'#0B2F3A';//'#FE642E';
+			context.font = 60+'px "Microsoft Yahei" bold';
+			context.fillStyle = color;
+			context.textAlign = 'center';
+			context.textBaseline = 'middle';
+			//context.shadowBlur = 30;
+			context.fillText(text, x, y);
+			context.strokeStyle=color;
+			context.lineWidth=3;
+			context.strokeText(text, x, y);
+
+			if(!text2) return;
+			y+=52;
+			color='#FE642E';
+			context.font = 26+'px "Microsoft Yahei" ';
+			context.fillStyle = color;
+			context.textAlign = 'center';
+			context.textBaseline = 'middle';
+			context.fillText(text2, x, y);
+		}
+		marker(context, 'Lenovo 2F Lab', '联想大厦', 1850, 1800);
 
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
@@ -2819,7 +2844,7 @@ demo.registerCreator('rack', function(box, json){
 	rack.setClient('type', 'rack');
 	rack.setClient('origin', rack.getPosition().clone());
 	rack.setClient('loaded', false);
-	rack.setRotation(0, Math.PI/180 * 270, 0);
+	rack.setRotation(0, Math.PI/180 * 90, 0);
 	rack.shadow = shadow;
 
 	var rackDoor = new mono.Cube(width, height, 2);
