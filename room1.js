@@ -229,9 +229,9 @@ var demo = {
 		demo.setupToolbar(buttons);
 
 		mono.Utils.autoAdjustGl3dviewBounds(gl3dview,document.documentElement,'clientWidth','clientHeight');
-		gl3dview.getRootView().addEventListener('click', function(e){
-			demo.handleOneClick(e, gl3dview);
-		});
+		//gl3dview.getRootView().addEventListener('click', function(e){
+		//	demo.handleOneClick(e, gl3dview);
+		//});
 		gl3dview.getRootView().addEventListener('dblclick', function(e){
 			demo.handleDoubleClick(e, gl3dview);
 		});	
@@ -529,19 +529,7 @@ var demo = {
 		}
 	},
 
-	handleOneClick: function(e, gl3dview){
-		var gleye=gl3dview.getGleye();
-		var interaction=gl3dview.getDefaultInteraction();
-		var firstClickObject=demo.findFirstObjectByMouse(gl3dview,e);
-		if(firstClickObject){
-			var element=firstClickObject.element;
-			if(element.getClient('onel.func') &&
-			(element.getClient('type') === 'drawer' || element.getClient('type') === 'card')){
-				var func=element.getClient('onel.func');
-				func();
-			}
-		}
-	},
+
 
 	//鼠标移动到网元上1S后显示tooltip
     handleMouseMove: function(e, gl3dview, tooltipObj){ 
@@ -891,7 +879,7 @@ var demo = {
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
 		server.setClient('animation', 'pullOut.z');
 		server.setClient('type','drawer');
-		server.setClient('onel.func', demo.showCardTable);
+		server.setClient('dbl.func', demo.showCardTable);
 		server.setPosition(0.5, 0, -5);
 		box.add(server);
 
@@ -921,7 +909,7 @@ var demo = {
 
 				card.setParent(server);	
 				card.setClient('type','card');
-				card.setClient('onel.func', demo.showCardTable);
+				card.setClient('dbl.func', demo.showCardTable);
 				card.setClient('BID','card-'+i);	
 				card.setClient('isAlarm', cardColor != '#FFFFFF');				
 		  		card.p(-width/2 + xoffset + (i+0.5) * cardWidth,-height/2+yoffset,serverPanel.getPositionZ()-1);
