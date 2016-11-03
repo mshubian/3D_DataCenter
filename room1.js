@@ -1855,16 +1855,24 @@ var demo = {
 		span.style['background-color']='rgba(255,255,255,0.85)';
 		span.style['padding']='10px';
 		span.style['color']='darkslategrey';
-		span.innerHTML='<b>告警描述</b>'+
-			'<p>lenovo S330板卡有EPE1，LP1，OL16，CSB,SC，EPE1（2M电口）与LP1（155M光）与用户路由器连接。'+
-			'EPE1上发生TU-AIS ,TU-LOP，UNEQ，误码秒告警，所配业务均出现，用户路由器上出现频繁up，down告警。'+
-			'用户路由器上与1块LP1（有vc12级别的交叉）连接的cpos板卡上也有频繁up，down告警，与另一块LP1（vc4穿通）'+
-			'连接的cpos卡上无告警</p>'+
-			'<b>故障分析</b>'+
-			'<p>情况很多。如果只是单站出现，首先判断所属环上保护，主用光路有没有告警；如果有，解决主用线路问题；'+
-			'如果没有，做交叉板主备切换--当然是在晚上进行；很少出现主备交叉板都坏的情况。'+
-			'还没解决的话，依次检查单板和接口板。</p>';
-
+		span.innerHTML='<b>硬件信息</b>'+
+			'<p>机器型号：System X 3650</p>'+
+			'<p>机器S/N：JPO3676123</p>'+
+			'<p> ...  ：  ... </p>'+
+			'<b>资产信息</b>'+
+			'<p>资产编号：Tools-1234</p>'+
+			'<p>对接人：ITcode</p>'+
+			'<b>监控信息</b>'+
+			'<p>CPU：20%</p>'+
+			'<p>memory：50%</p>'+
+			'<p>network：10 Mb/s</p>'+
+			'<p>disk：60%</p>'+
+			'<p>温度：65℃</p>'+
+			'<p>IMM：OK</p>'+
+			'<b>操作列表</b>'+
+			'<p>开/关机</p>'+
+			'<p>Deploy</p>'+
+			'<p></p>';
 		demo.showDialog(span, 'SDH 2M支路板告警', 510, 250);
 		span.style['width']='484px';
 		span.style['height']='203px';
