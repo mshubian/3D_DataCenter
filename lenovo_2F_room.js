@@ -3198,44 +3198,28 @@ csgb.setPosition(-780, 100, -200)
 var csgbb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
 csgbb.setPosition(-780, 100, -100)
 var csgc=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgc.setPosition(-780, 100, 100) 
-var csgd=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgd.setPosition(-780, 100, 200) 
-var csge=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csge.setPosition(-780, 100, 300) 
-var csgf=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgf.setPosition(-780, 100, 400) 
-var csgg=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csgg.setPosition(-780, 100, 500) 
-
 
 var aa=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-aa.setPosition(-350, 100, 580) 
+aa.setPosition(-780, 100, -600)
 var bb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-bb.setPosition(-250, 100, 580) 
-var cc=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-cc.setPosition(-150, 100, 580) 
-var dd=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-dd.setPosition(-50, 100, 580) 
-var ee=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-ee.setPosition(50, 100, 580) 
-var ff=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-ff.setPosition(150, 100, 580) 
+bb.setPosition(-780, 100, -500)
+
+
 
 box.add(csg);
 box.add(csga);
 box.add(csgb);
 box.add(csgbb);
-box.add(csge);
-box.add(csgf);
-box.add(csgg);
-
 box.add(aa);
 box.add(bb);
-box.add(cc);
-box.add(dd);
-box.add(ee);
-box.add(ff);
+
+
+//box.add(aa);
+//box.add(bb);
+//box.add(cc);
+//box.add(dd);
+//box.add(ee);
+//box.add(ff);
 //box.add(csge);
 
 
@@ -3866,7 +3850,7 @@ twaver.Util.ext('Tooltip', Object, {
 var dataJson={	
 	objects: [{
 		type: 'floor',
-		width: 2000,
+		width: 2500,
 		depth: 2000,
 	},{
 		type: 'floor_cut',
