@@ -229,6 +229,9 @@ var demo = {
 		demo.setupToolbar(buttons);
 
 		mono.Utils.autoAdjustGl3dviewBounds(gl3dview,document.documentElement,'clientWidth','clientHeight');
+		gl3dview.getRootView().addEventListener('click', function(e){
+			demo.handleOneClick(e, gl3dview);
+		});
 		gl3dview.getRootView().addEventListener('dblclick', function(e){
 			demo.handleDoubleClick(e, gl3dview);
 		});	
@@ -523,6 +526,20 @@ var demo = {
 			var oldTarget=gleye.getTarget();
 			var newTarget=new mono.XiangliangThree(0,0,0);
 			demo.animateGleye(gleye, interaction, oldTarget, newTarget);
+		}
+	},
+
+	handleOneClick: function(e, gl3dview){
+		var gleye=gl3dview.getGleye();
+		var interaction=gl3dview.getDefaultInteraction();
+		var firstClickObject=demo.findFirstObjectByMouse(gl3dview,e);
+		if(firstClickObject){
+			var element=firstClickObject.element;
+			if(element.getClient('onel.func') &&
+			(element.getClient('type') === 'drawer' || element.getClient('type') === 'card')){
+				var func=element.getClient('onel.func');
+				func();
+			}
 		}
 	},
 
@@ -873,6 +890,8 @@ var demo = {
 
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
 		server.setClient('animation', 'pullOut.z');
+		server.setClient('type','drawer');
+		server.setClient('onel.func', demo.showCardTable);
 		server.setPosition(0.5, 0, -5);
 		box.add(server);
 
@@ -901,7 +920,8 @@ var demo = {
 				box.add(card);
 
 				card.setParent(server);	
-				card.setClient('type','card');	
+				card.setClient('type','card');
+				card.setClient('onel.func', demo.showCardTable);
 				card.setClient('BID','card-'+i);	
 				card.setClient('isAlarm', cardColor != '#FFFFFF');				
 		  		card.p(-width/2 + xoffset + (i+0.5) * cardWidth,-height/2+yoffset,serverPanel.getPositionZ()-1);
@@ -1855,6 +1875,43 @@ var demo = {
 		demo.showDialog(table, 'Door Security Records', 330, 240);
 	},
 
+	showCardTable: function(){
+		var table=document.createElement('table');
+		table.setAttribute('class', 'gridtable');
+		for(var k=0;k<8;k++){
+			var tr=document.createElement('tr');
+			table.appendChild(tr);
+			for(var i=0;i<3;i++){
+				var tagName= k==0 ? 'th' : 'td';
+				var td=document.createElement(tagName);
+				tr.appendChild(td);
+				if(k==0){
+					if(i==0){
+						td.innerHTML='Name';
+					}
+					if(i==1){
+						td.innerHTML='Value';
+					}
+					if(i==2){
+						td.innerHTML='Level';
+					}
+				}else{
+					if(i==0){
+						td.innerHTML="cpu usage";
+					}
+					if(i==1){
+						td.innerHTML="56.78%";
+					}
+					if(i==2){
+						td.innerHTML='ok';
+					}
+				}
+			}
+		}
+
+		demo.showDialog(table, 'Card info', 180, 240);
+	},
+
 	toggleSmokeView: function(gl3dview){
 		gl3dview.smokeView=!gl3dview.smokeView;
 		gl3dview.getServa().forEach(function(element){
@@ -2199,6 +2256,30 @@ demo.registerFilter('plants', function(box, json){
 			};
 			demo.copyProperties(json, plant, ['type', 'translates', 'translate']);
 			objects.push(plant);
+		}
+	}
+	return objects;
+});
+
+demo.registerFilter('big_racks', function(box, json){
+	var objects=[];
+	var translates=json.translates;
+	var severities=json.severities || [];
+	var labels=json.labels || [];
+	if(translates){
+		for(var i=0;i<translates.length;i++){
+			var translate=translates[i];
+			var severity=severities[i];
+			var label=labels[i] || '';
+			var rack={
+				type: 'rack',
+				shadow: true,
+				translate: translate,
+				severity: severity,
+				label: label,
+			};
+			demo.copyProperties(json, rack, ['type', 'translates', 'translate', 'severities']);
+			objects.push(rack);
 		}
 	}
 	return objects;
@@ -3733,27 +3814,50 @@ var dataJson={
 		rotate: [0, Math.PI/180*90, 0],
 		translate: [900, 0, 0],	  // location
 	},{
+		type: 'big_racks',
+		translates: [
+			[150-62, 0, 250],
+		],
+		labels: (function(){
+			var labels=[];
+			for(var k=1; k<2; k++){
+				var label = '1B';
+				if(k < 10){
+ 					label += '0';
+				}
+				labels.push(label + k);
+			}
+			return labels;
+		})(),
+		severities: [mono.AlarmSeverity.CRITICAL, null,null,mono.AlarmSeverity.WARNING,mono.AlarmSeverity.CRITICAL,null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,mono.AlarmSeverity.WARNING,null,mono.AlarmSeverity.MINOR],
+	},{
 		type: 'racks',		
 		translates: [
 			[-150, 0, 250],
 			[-150-62, 0, 250],
 			[-150-62-62, 0, 250],
+			[-150-62-62-62, 0, 250],
+			[-150-62-62-62-62, 0, 250],
+			[-150-62-62-62-62-62, 0, 250],
 			[-370, 0, -250],
 			[-370+62, 0, -250],
 			[-370+62+62, 0, -250],
 			[-370+62+62+62, 0, -250],
+			[-370+62+62+62, 0, -250],
+			[-370+62+62+62+62, 0, -250],
+			[-370+62+62+62+62+62, 0, -250],
+			//[150-62, 0, 250],
 			[150, 0, 250],
 			[150+62, 0, 250],
 			[150+62+62, 0, 250],
 			[150+62+62+62, 0, 250],
 			[150+62+62+62+62, 0, 250],
-			[150-62, 0, 250],
-			[150-62-62, 0, 250],
-			[150-62-62-62, 0, 300],
+			[150+62+62+62+62+62, 0, 250],
+			//[150-62-62, 0, 250],
 		],
 		labels: (function(){
 			var labels=[];
-			for(var k=0; k<14; k++){
+			for(var k=1; k<21; k++){
 				var label = '1A';
 				if(k < 10){
  					label += '0';
