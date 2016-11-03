@@ -3957,12 +3957,23 @@ var dataJson={
 		{
 			type: 'window',
 //			translate: [200, 30, 650],
-			translate: [500, 0, 10],  //   --------------
+			translate: [500, 0, 100],  //   -------------- ok one
 			width: 1050,
 			height: 220,
 			depth: 50, 
 			r: Math.PI,
 		},
+		{
+			type: 'door',
+			width: 130,
+			height: 180,
+			depth: 26,
+			translate: [200,0,500],
+			rotation: Math.PI,
+			p1: 30,
+			p2: 30,	
+		}
+		
 
 ],
 
@@ -3984,12 +3995,23 @@ var dataJson={
 		children: [
 		{
 			type: 'window',
-			translate: [300, 0, 50],  //---------------
-			width: 1000,
+			translate: [300, 0, 100],  //---------------
+			width: 1600,
 			height: 220,
-			depth: 80, 
+			depth: 50, 
 			r: Math.PI,
 		},
+		{
+			type: 'door',
+			width: 130,
+			height: 180,
+			depth: 26,
+			translate: [500,0,800],
+			rotation: Math.PI,
+			p1: 30,
+			p2: 30,		
+		}
+		
 
 ],
     },
