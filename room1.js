@@ -229,9 +229,9 @@ var demo = {
 		demo.setupToolbar(buttons);
 
 		mono.Utils.autoAdjustGl3dviewBounds(gl3dview,document.documentElement,'clientWidth','clientHeight');
-		gl3dview.getRootView().addEventListener('click', function(e){
-			demo.handleOneClick(e, gl3dview);
-		});
+		//gl3dview.getRootView().addEventListener('click', function(e){
+		//	demo.handleOneClick(e, gl3dview);
+		//});
 		gl3dview.getRootView().addEventListener('dblclick', function(e){
 			demo.handleDoubleClick(e, gl3dview);
 		});	
@@ -529,19 +529,7 @@ var demo = {
 		}
 	},
 
-	handleOneClick: function(e, gl3dview){
-		var gleye=gl3dview.getGleye();
-		var interaction=gl3dview.getDefaultInteraction();
-		var firstClickObject=demo.findFirstObjectByMouse(gl3dview,e);
-		if(firstClickObject){
-			var element=firstClickObject.element;
-			if(element.getClient('onel.func') &&
-			(element.getClient('type') === 'drawer' || element.getClient('type') === 'card')){
-				var func=element.getClient('onel.func');
-				func();
-			}
-		}
-	},
+
 
 	//鼠标移动到网元上1S后显示tooltip
     handleMouseMove: function(e, gl3dview, tooltipObj){ 
@@ -891,7 +879,7 @@ var demo = {
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
 		server.setClient('animation', 'pullOut.z');
 		server.setClient('type','drawer');
-		server.setClient('onel.func', demo.showCardTable);
+		server.setClient('dbl.func', demo.showCardTable);
 		server.setPosition(0.5, 0, -5);
 		box.add(server);
 
@@ -921,7 +909,7 @@ var demo = {
 
 				card.setParent(server);	
 				card.setClient('type','card');
-				card.setClient('onel.func', demo.showCardTable);
+				card.setClient('dbl.func', demo.showCardTable);
 				card.setClient('BID','card-'+i);	
 				card.setClient('isAlarm', cardColor != '#FFFFFF');				
 		  		card.p(-width/2 + xoffset + (i+0.5) * cardWidth,-height/2+yoffset,serverPanel.getPositionZ()-1);
@@ -3200,9 +3188,57 @@ var csg2=new mono.CSG(cylinder1);  //圆柱体对应的运算体对象
 var csg3=new mono.CSG(cylinder2);
 var csg4=new mono.CSG(cylinder3);
 var csg5=new mono.CSG(cylinder4);
+
 var csg=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
-csg.setPosition(-200, 10, 1200) 
+csg.setPosition(-780, 50, -400) 
+var csga=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csga.setPosition(-780, 50, -300) 
+var csgb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csgb.setPosition(-780, 50, -200)
+var csgbb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csgbb.setPosition(-780, 50, -100)
+var csgc=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csgc.setPosition(-780, 50, 100) 
+var csgd=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csgd.setPosition(-780, 50, 200) 
+var csge=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csge.setPosition(-780, 50, 300) 
+var csgf=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csgf.setPosition(-780, 50, 400) 
+var csgg=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csgg.setPosition(-780, 50, 500) 
+
+
+var aa=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+aa.setPosition(-350, 50, 580) 
+var bb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+bb.setPosition(-250, 50, 580) 
+var cc=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+cc.setPosition(-150, 50, 580) 
+var dd=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+dd.setPosition(-50, 50, 580) 
+var ee=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+ee.setPosition(50, 50, 580) 
+var ff=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+ff.setPosition(150, 50, 580) 
+
 box.add(csg);
+box.add(csga);
+box.add(csgb);
+box.add(csgbb);
+box.add(csge);
+box.add(csgf);
+box.add(csgg);
+
+box.add(aa);
+box.add(bb);
+box.add(cc);
+box.add(dd);
+box.add(ee);
+box.add(ff);
+//box.add(csge);
+
+
 	};
 	var loaderFunc=function(x, y, z, scaleX, scaleY, scaleZ){
 		return function(){
@@ -3212,24 +3248,7 @@ box.add(csg);
 	setTimeout(loaderFunc(translate[0],translate[1],translate[2],scale[0],scale[1],scale[2]), demo.getRandomLazyTime());					
 });
 
-// create a desk object:
-demo.createDesk = function(x, y, z, scaleX, scaleY, scaleZ){
-	var plant;
-		var pic=demo.getRes('bbb.png');  // 
 
-			var plant=new mono.Cube(20,10,10);	
-
-			plant.s({
-				'm.visible': true,
-				'm.alphaTest': 0.5,
-				'm.visible': true,
-				'm.texture.image': pic,
-			});
-	plant.setPosition(100,0,1200);
-	plant.setScale(10, 10, 10);
-	plant.setClient('type', 'desk');
-	return plant;
-}
 
 //---------------------------------------------------------------------------------------------------------//
 
@@ -3927,8 +3946,9 @@ var dataJson={
 	{
 		type: 'desks',
 		shadow: false,
-		translates: [[-200, 10, 1200]],
-	},{
+		translates: [[-200, 10, 1200],[-100, 10, 1200],[-100, 10, 1200]],
+	},
+	{
 //		type: 'plants',
 //		shadow: true,
 //		translates: [[560, 0, 350],[560, 0, 0],[560, 0, -340],[-70, 0, 350],[-70, 0, 0],[-70, 0, -340]],
