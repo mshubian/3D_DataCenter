@@ -1018,9 +1018,9 @@ var demo = {
 			context.textBaseline = 'middle';		
 			context.fillText(text2, x, y);
 		}
-		marker(context, '阿里巴巴', '192.168.1.100', 530, 500);
-		marker(context, '乐视', '192.168.1.150', 590, 1000);
-		marker(context, '亚马逊', 'ip待分配', 1020, 1000);
+		marker(context, 'Lenovo', '192.168.1.100', 1200, 650);
+		marker(context, 'lenovo', '192.168.1.150', 1200, 1000);
+		marker(context, 'lenovo', '192.168.1.200', 1200, 1350);
 
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
