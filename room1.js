@@ -997,31 +997,6 @@ var demo = {
 		context.fillStyle = 'white';
 		context.fill();
 
-		var marker=function(context, text, text2, x, y){
-			var color='#0B2F3A';//'#0B2F3A';//'#FE642E';
-			context.font = 60+'px "Microsoft Yahei" bold';
-			context.fillStyle = color;
-			context.textAlign = 'center';
-			context.textBaseline = 'middle';		
-			//context.shadowBlur = 30;
-			context.fillText(text, x, y);
-			context.strokeStyle=color;
-			context.lineWidth=3;			
-			context.strokeText(text, x, y);
-
-			if(!text2) return;
-			y+=52;
-			color='#FE642E';
-			context.font = 26+'px "Microsoft Yahei" ';
-			context.fillStyle = color;
-			context.textAlign = 'center';
-			context.textBaseline = 'middle';		
-			context.fillText(text2, x, y);
-		}
-		marker(context, 'Lenovo', '192.168.1.100', 1200, 650);
-		marker(context, 'lenovo', '192.168.1.150', 1200, 1000);
-		marker(context, 'lenovo', '192.168.1.200', 1200, 1350);
-
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
 				var translate=object.getPosition() || {x:0, y:0, z:0};	
@@ -2279,7 +2254,7 @@ demo.registerFilter('racks', function(box, json){
 			var severity=severities[i];
 			var label=labels[i] || '';
 			var rack={
-				type: 'rack',
+				type: 'big_rack',
 				shadow: true,
 				translate: translate,
 				severity: severity,
@@ -3274,71 +3249,6 @@ demo.registerCreator('plant', function(box, json){
 	setTimeout(loaderFunc(translate[0],translate[1],translate[2],scale[0],scale[1],scale[2]), demo.getRandomLazyTime());					
 });
 
-demo.registerCreator('tv', function(box, json){
-	var translate=json.translate || [0,0,0];
-	var x=translate[0],
-		y=translate[1],
-		z=translate[2];
-	var edgeX=4,
-		edgeY=2;
-	var picture=json.picture || demo.getRes('tv.jpg');
-	var rotate=json.rotate || [0,0,0];
-
-	var parts = [{
-		//tv body
-		type: 'cube',
-		width: 150,
-		height: 80,
-		depth: 5,
-		translate: [x, y, z],
-		rotate: rotate,
-		op: '+',
-		style: {
-			'm.type': 'phong',
-			'm.color': '#2D2F31',
-			'm.ambient': '#2D2F31',
-			'm.normalmap.image':demo.getRes('metal_normalmap.jpg'),
-			'm.texture.repeat': new mono.XiangliangTwo(10,6),
-			'm.specularStrength': 20,
-		},
-	},{
-		//'tv cut off',
-		type: 'cube',
-		width: 130,
-		height: 75,
-		depth: 5,
-		translate: [x, y+edgeY, z+edgeX],
-		rotate: rotate,
-		op: '-',
-		style: {
-			'm.type': 'phong',
-			'm.color': '#2D2F31',
-			'm.ambient': '#2D2F31',
-			'm.normalmap.image':demo.getRes('metal_normalmap.jpg'),
-			'm.texture.repeat': new mono.XiangliangTwo(10,6),
-			'm.specularStrength': 100,
-		},
-	},{
-		//'tv screen',
-		type: 'cube',
-		width: 130,
-		height: 75,
-		depth: 1,
-		translate: [x, y+edgeY, z+1.6],
-		rotate: rotate,
-		op: '+',
-		style: {
-			'm.type': 'phong',
-			'm.specularStrength': 200,
-			'front.m.texture.image': picture,
-		},
-	}];
-
-	var tv=demo.createCombo(parts);
-	tv.setClient('type', 'tv');
-	box.add(tv);
-});
-
 demo.registerCreator('post', function(box, json){
 	var translate=json.translate || [0,0,0];
 	var x=translate[0],
@@ -4011,11 +3921,11 @@ var dataJson={
 		shadow: false,
 		translates: [[-200, 10, 1200]],
 	},{
+//		type: 'plants',
+//		shadow: true,
+//		translates: [[560, 0, 350],[560, 0, 0],[560, 0, -340],[-70, 0, 350],[-70, 0, 0],[-70, 0, -340]],
+//	},{
 		type: 'plants',
-		shadow: true,
-		translates: [[560, 0, 400],[560, 0, 0],[60, 0, -100],[60, 0, -400],[-560, 0, 400],[-560, 0, 0],[-560, 0, -400]],
-	},{
-		type: 'plants',		
 		scale: [0.5, 0.3, 0.5],
 		shadow: false,
 		translates: [[100, 30, 650],[300, 30, 650]],  // translates: number of plants
@@ -4032,9 +3942,9 @@ var dataJson={
 	},{
 		type: 'big_racks',
 		translates: [
-			[150-62-31, 0, 350],
-			[150-62-31, 0, 0],
-			[150-62-31, 0, -350],
+			[-160-124, 0, 350],
+			[-160-124, 0, 0],
+			[-160-124, 0, -350],
 		],
 		labels: (function(){
 			var labels=[];
@@ -4051,24 +3961,24 @@ var dataJson={
 	},{
 		type: 'racks',		
 		translates: [
-			[150, 0, 350],
-			[150+62, 0, 350],
-			[150+62+62, 0, 350],
-			[150+62+62+62, 0, 350],
-			[150+62+62+62+62, 0, 350],
-			[150+62+62+62+62+62, 0, 350],
-			[150, 0, 0],
-			[150+62, 0, 0],
-			[150+62+62, 0, 0],
-			[150+62+62+62, 0, 0],
-			[150+62+62+62+62, 0, 0],
-			[150+62+62+62+62+62, 0, 0],
-			[150, 0, -350],
-			[150+62, 0, -350],
-			[150+62+62, 0, -350],
-			[150+62+62+62, 0, -350],
-			[150+62+62+62+62, 0, -350],
-			[150+62+62+62+62+62, 0, -350],
+			[-160-10, 0, 350],
+			[-160+124-20, 0, 350],
+			[-160+124+124-30, 0, 350],
+			[-160+124+124+124-40, 0, 350],
+			[-160+124+124+124+124-50, 0, 350],
+			[-160+124+124+124+124+124-60, 0, 350],
+			[-160-10, 0, 0],
+			[-160+124-20, 0, 0],
+			[-160+124+124-30, 0, 0],
+			[-160+124+124+124-40, 0, 0],
+			[-160+124+124+124+124-50, 0, 0],
+			[-160+124+124+124+124+124-60, 0, 0],
+			[-160-10, 0, -350],
+			[-160+124-20, 0, -350],
+			[-160+124+124-30, 0, -350],
+			[-160+124+124+124-40, 0, -350],
+			[-160+124+124+124+124-50, 0, -350],
+			[-160+124+124+124+124+124-60, 0, -350],
 		],
 		labels: (function(){
 			var labels=[];
@@ -4083,11 +3993,8 @@ var dataJson={
 		})(),
 		severities: [mono.AlarmSeverity.CRITICAL, null,null,mono.AlarmSeverity.WARNING,mono.AlarmSeverity.CRITICAL,null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,mono.AlarmSeverity.WARNING,null,mono.AlarmSeverity.MINOR],
 	},{
-		type: 'tv',
-		translate: [-130, 100, 513],	
-	},{
 		type: 'post',
-		translate: [80, 110, 10],	
+		translate: [-200, 100, -635],
 		width: 70,
 		height: 120,
 		pic: demo.getRes('post.jpg'),
