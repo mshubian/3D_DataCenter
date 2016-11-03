@@ -1018,9 +1018,9 @@ var demo = {
 			context.textBaseline = 'middle';		
 			context.fillText(text2, x, y);
 		}
-		marker(context, '阿里巴巴', '192.168.1.100', 530, 500);
-		marker(context, '乐视', '192.168.1.150', 590, 1000);
-		marker(context, '亚马逊', 'ip待分配', 1020, 1000);
+		marker(context, 'Lenovo', '192.168.1.100', 1200, 650);
+		marker(context, 'lenovo', '192.168.1.150', 1200, 1000);
+		marker(context, 'lenovo', '192.168.1.200', 1200, 1350);
 
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
@@ -1876,40 +1876,23 @@ var demo = {
 	},
 
 	showCardTable: function(){
-		var table=document.createElement('table');
-		table.setAttribute('class', 'gridtable');
-		for(var k=0;k<8;k++){
-			var tr=document.createElement('tr');
-			table.appendChild(tr);
-			for(var i=0;i<3;i++){
-				var tagName= k==0 ? 'th' : 'td';
-				var td=document.createElement(tagName);
-				tr.appendChild(td);
-				if(k==0){
-					if(i==0){
-						td.innerHTML='Name';
-					}
-					if(i==1){
-						td.innerHTML='Value';
-					}
-					if(i==2){
-						td.innerHTML='Level';
-					}
-				}else{
-					if(i==0){
-						td.innerHTML="cpu usage";
-					}
-					if(i==1){
-						td.innerHTML="56.78%";
-					}
-					if(i==2){
-						td.innerHTML='ok';
-					}
-				}
-			}
-		}
+		var span=document.createElement('span');
+		span.style['background-color']='rgba(255,255,255,0.85)';
+		span.style['padding']='10px';
+		span.style['color']='darkslategrey';
+		span.innerHTML='<b>告警描述</b>'+
+			'<p>lenovo S330板卡有EPE1，LP1，OL16，CSB,SC，EPE1（2M电口）与LP1（155M光）与用户路由器连接。'+
+			'EPE1上发生TU-AIS ,TU-LOP，UNEQ，误码秒告警，所配业务均出现，用户路由器上出现频繁up，down告警。'+
+			'用户路由器上与1块LP1（有vc12级别的交叉）连接的cpos板卡上也有频繁up，down告警，与另一块LP1（vc4穿通）'+
+			'连接的cpos卡上无告警</p>'+
+			'<b>故障分析</b>'+
+			'<p>情况很多。如果只是单站出现，首先判断所属环上保护，主用光路有没有告警；如果有，解决主用线路问题；'+
+			'如果没有，做交叉板主备切换--当然是在晚上进行；很少出现主备交叉板都坏的情况。'+
+			'还没解决的话，依次检查单板和接口板。</p>';
 
-		demo.showDialog(table, 'Card info', 180, 240);
+		demo.showDialog(span, 'SDH 2M支路板告警', 510, 250);
+		span.style['width']='484px';
+		span.style['height']='203px';
 	},
 
 	toggleSmokeView: function(gl3dview){
@@ -2272,7 +2255,7 @@ demo.registerFilter('big_racks', function(box, json){
 			var severity=severities[i];
 			var label=labels[i] || '';
 			var rack={
-				type: 'rack',
+				type: 'big_rack',
 				shadow: true,
 				translate: translate,
 				severity: severity,
@@ -2987,6 +2970,188 @@ demo.registerCreator('rack', function(box, json){
 		rack.alarm=alarm;
 		box.getAlarmBox().add(alarm);
 	}			
+	var loadFunction = function(){
+		loader(box, width, height, depth, severity, rack, json);
+	};
+	rack.setClient('rack.loader', loadFunction);
+});
+
+demo.registerCreator('big_rack', function(box, json){
+	var translate=json.translate || [0,0,0];
+	var x=translate[0],
+		y=translate[1],
+		z=translate[2];
+	var width=json.width || 120;
+	var height=json.height || 200;
+	var depth=json.depth || 80;
+	var severity=json.severity;
+	var label=json.label;
+	var shadow = json.shadow;
+
+	var rack= new mono.Cube(width, height, depth);
+	rack.s({
+		'm.color': '#557E7A',
+		'left.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'right.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'front.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'back.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'top.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'left.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'right.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'back.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'top.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'left.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'right.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'back.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'top.m.envmap.image': demo.getEnvMap(),
+		'left.m.envmap.image': demo.getEnvMap(),
+		'right.m.envmap.image': demo.getEnvMap(),
+		'back.m.envmap.image': demo.getEnvMap(),
+		'm.ambient': '#557E7A',
+		'm.type':'phong',
+		'm.specularStrength': 50,
+		'front.m.texture.image':demo.getRes('rack.jpg'),
+		'front.m.texture.repeat': new mono.XiangliangTwo(1,1),
+		'front.m.specularmap.image':demo.getRes('white.png'),
+		'front.m.color':'#666',
+		'front.m.ambient':'#666',
+		'front.m.specularStrength': 200,
+	});
+	rack.setPosition(x, height/2+1+y, z);
+
+	var labelCanvas=demo.generateAssetImage(label);
+	rack.setStyle('top.m.texture.image', labelCanvas);
+	rack.setStyle('top.m.specularmap.image', labelCanvas);
+	rack.setClient('label', label);
+	rack.setClient('type', 'big_rack');
+	rack.setClient('origin', rack.getPosition().clone());
+	rack.setClient('loaded', false);
+	rack.shadow = shadow;
+
+	var rackDoor = new mono.Cube(width, height, 2);
+	rackDoor.s({
+		'm.type':'phong',
+		'm.color': '#A5F1B5',
+		'm.ambient': '#A4F4EC',
+		'front.m.texture.image': demo.getRes('rack_front_door.jpg'),
+		'back.m.texture.image': demo.getRes('rack_door_back.jpg'),
+		'm.envmap.image': demo.getEnvMap(),
+	});
+	rackDoor.setParent(rack);
+	rack.door=rackDoor;
+	rackDoor.setPosition(0, 0, depth/2+1);
+	rackDoor.setClient('animation','rotate.right.100');
+	rackDoor.setClient('type', 'rack.door');
+	rackDoor.setClient('animation.done.func', function(){
+		if(rack.getClient('loaded') || !rackDoor.getClient('animated')){
+			return;
+		}
+		var fake=rack.clone();
+		fake.s({
+			'm.color': 'red',
+			'm.ambient': 'red',
+			'm.texture.image': null,
+			'top.m.normalmap.image': demo.getRes('outside_lightmap.jpg'),
+			'top.m.specularmap.image': demo.getRes('white.png'),
+		});
+		fake.setDepth(fake.getDepth()-2);
+		fake.setWidth(fake.getWidth()-2);
+		box.add(fake);
+
+		rack.s({
+			'm.transparent': true,
+			'm.opacity': 0.5,
+		});
+
+		new twaver.Animate({
+			from: 0,
+			to: fake.getHeight(),
+			dur: 2000,
+			easing: 'easeOut',
+			onUpdate: function (value) {
+				fake.setHeight(value);
+				fake.setPositionY(value/2);
+			},
+			onDone: function(){
+				box.remove(fake);
+				rack.s({
+					'm.transparent': false,
+					'm.opacity': 1,
+				});
+				var loader = rack.getClient('rack.loader');
+				if(loader && rackDoor.getClient('animated') && !rack.getClient('loaded')){
+					loader();
+					rack.setClient('loaded', true);
+
+					if(rack.getClient('loaded.func')){
+						rack.getClient('loaded.func')(rack);
+					}
+				}
+			}
+		}).play();
+	});
+
+	var loader=function(box, width, height, depth, severity, rack, json){
+		var cut=new mono.Cube(width*0.75, height-10, depth*0.7);
+		cut.s({
+			'm.color': '#333333',
+			'm.ambient': '#333333',
+			'm.lightmap.image': demo.getRes('inside_lightmap.jpg'),
+			'bottom.m.texture.repeat': new mono.XiangliangTwo(2,2),
+			'left.m.texture.image': demo.getRes('rack_panel.jpg'),
+			'right.m.texture.image': demo.getRes('rack_panel.jpg'),
+			'back.m.texture.image': demo.getRes('rack_panel.jpg'),
+			'back.m.texture.repeat': new mono.XiangliangTwo(1,1),
+			'top.m.lightmap.image': demo.getRes('floor.jpg'),
+		});
+		cut.setPosition(0, 0, depth/2-cut.getDepth()/2+1);
+		box.remove(rack);
+		if(rack.alarm){
+			box.getAlarmBox().remove(rack.alarm);
+		}
+
+		var cube = rack.clone();
+		cube.p(0, 0, 0);
+
+		var newRack=new mono.ComboNode([cube, cut], ['-']);
+
+		var x=rack.getPosition().x;
+		var y=rack.getPosition().y;
+		var z=rack.getPosition().z;
+
+		newRack.p(x, y, z);
+		newRack.setClient('type', 'big_rack');
+		newRack.oldRack=rack;
+		rack.newRack=newRack;
+		newRack.shadow = shadow;
+		box.add(newRack);
+
+		if(severity){
+			var alarm = new mono.Alarm(newRack.getId(), newRack.getId(), severity);
+			newRack.setStyle('alarm.billboard.vertical', true);
+			newRack.alarm=alarm;
+			box.getAlarmBox().add(alarm);
+		}
+
+		//set child for newrack
+		var children = rack.getChildren();
+		children.forEach(function(child){
+			if(child && !(child instanceof mono.Billboard)){
+				child.setParent(newRack);
+			}
+		});
+
+		demo.loadRackContent(box, x, y, z, width, height, depth, severity, cube, cut, json, newRack, rack);
+	};
+
+	box.add(rack);
+	box.add(rackDoor);
+	if(severity){
+		var alarm = new mono.Alarm(rack.getId(), rack.getId(), severity);
+		rack.setStyle('alarm.billboard.vertical', true);
+		rack.alarm=alarm;
+		box.getAlarmBox().add(alarm);
+	}
 	var loadFunction = function(){
 		loader(box, width, height, depth, severity, rack, json);
 	};
@@ -3846,11 +4011,13 @@ var dataJson={
 	},{
 		type: 'big_racks',
 		translates: [
-			[150-62, 0, 250],
+			[150-62-31, 0, 350],
+			[150-62-31, 0, 0],
+			[150-62-31, 0, -350],
 		],
 		labels: (function(){
 			var labels=[];
-			for(var k=1; k<2; k++){
+			for(var k=1; k<4; k++){
 				var label = '1B';
 				if(k < 10){
  					label += '0';
@@ -3863,27 +4030,24 @@ var dataJson={
 	},{
 		type: 'racks',		
 		translates: [
-			[-150, 0, 250],
-			[-150-62, 0, 250],
-			[-150-62-62, 0, 250],
-			[-150-62-62-62, 0, 250],
-			[-150-62-62-62-62, 0, 250],
-			[-150-62-62-62-62-62, 0, 250],
-			[-370, 0, -250],
-			[-370+62, 0, -250],
-			[-370+62+62, 0, -250],
-			[-370+62+62+62, 0, -250],
-			[-370+62+62+62, 0, -250],
-			[-370+62+62+62+62, 0, -250],
-			[-370+62+62+62+62+62, 0, -250],
-			//[150-62, 0, 250],
-			[150, 0, 250],
-			[150+62, 0, 250],
-			[150+62+62, 0, 250],
-			[150+62+62+62, 0, 250],
-			[150+62+62+62+62, 0, 250],
-			[150+62+62+62+62+62, 0, 250],
-			//[150-62-62, 0, 250],
+			[150, 0, 350],
+			[150+62, 0, 350],
+			[150+62+62, 0, 350],
+			[150+62+62+62, 0, 350],
+			[150+62+62+62+62, 0, 350],
+			[150+62+62+62+62+62, 0, 350],
+			[150, 0, 0],
+			[150+62, 0, 0],
+			[150+62+62, 0, 0],
+			[150+62+62+62, 0, 0],
+			[150+62+62+62+62, 0, 0],
+			[150+62+62+62+62+62, 0, 0],
+			[150, 0, -350],
+			[150+62, 0, -350],
+			[150+62+62, 0, -350],
+			[150+62+62+62, 0, -350],
+			[150+62+62+62+62, 0, -350],
+			[150+62+62+62+62+62, 0, -350],
 		],
 		labels: (function(){
 			var labels=[];
