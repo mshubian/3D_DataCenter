@@ -4123,25 +4123,25 @@ var dataJson={
 		],
 	},{
 		type: 'gleye',
-		translate: [80, 200, 30],
+		translate: [80, 200, -610],
 	},{
 		type: 'gleye',
-		translate: [470, 200, 400],
+		translate: [770, 200, 400],
 		angle: 90,
 	},{
 		type: 'gleye',
-		translate: [-450, 200, -470],
+		translate: [-450, 200, -510],
 		alarm: mono.AlarmSeverity.WARNING,
 	},{
 		type: 'extinguisher',
-		translate: [-45, -470],
+		translate: [750, -470],
 	},{
 		type: 'extinguisher',
-		translate: [-45, -450],		
+		translate: [750, -450],
 		arrow: true,
 	},{
 		type: 'extinguisher',
-		translate: [-45, -430],
+		translate: [750, -430],
 	},{
 		type: 'smoke',
 		translate: [300, 180, 240],
