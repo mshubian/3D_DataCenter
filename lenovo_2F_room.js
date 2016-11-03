@@ -877,6 +877,7 @@ var demo = {
 		}
 
 		var server=new mono.ComboNode([serverBody, serverPanel], ['+']);
+		server.setRotation(0, Math.PI/180 * 90, 0);
 		server.setClient('animation', 'pullOut.z');
 		server.setClient('type','drawer');
 		server.setClient('dbl.func', demo.showCardTable);
@@ -905,6 +906,7 @@ var demo = {
 					'color': cardColor
 				};
 				var card=demo.createCard(params);
+				//card.setRotation(0, Math.PI/180 * 180, 0);
 				box.add(card);
 
 				card.setParent(server);	
@@ -2819,7 +2821,7 @@ demo.registerCreator('rack', function(box, json){
 	rack.setClient('type', 'rack');
 	rack.setClient('origin', rack.getPosition().clone());
 	rack.setClient('loaded', false);
-	rack.setRotation(0, Math.PI/180 * 270, 0);
+	rack.setRotation(0, Math.PI/180 * 90, 0);
 	rack.shadow = shadow;
 
 	var rackDoor = new mono.Cube(width, height, 2);
