@@ -3163,7 +3163,7 @@ demo.registerCreator('big_rack', function(box, json){
 
 
 
-//----------------------------------------------------------------------------------------------------------//
+//------------------------------------------------------desk----------------------------------------------------//
 
 demo.registerFilter('desks', function(box, json){
 	var objects=[];
@@ -3183,7 +3183,6 @@ demo.registerFilter('desks', function(box, json){
 	return objects;
 });
 
-
 // desk type :
 demo.registerCreator('desk', function(box, json){
 	var scale=json.scale || [1,1,1];
@@ -3191,20 +3190,37 @@ demo.registerCreator('desk', function(box, json){
 	var shadow = json.shadow;
 	var translate=json.translate || [0,0,0];
 	var x=translate[0], y=translate[1], z=translate[2];
-
 	var loader=function(x, y, z, scaleX, scaleY, scaleZ){
+//创建一个立方体
+var cube = new mono.Cube(150,10,100);
+cube.setStyle('m.texture.image', 'res/metal.png');
+ 
+//创建一个圆柱体
+var cylinder1 = new mono.Cylinder(5,5,100);
+cylinder1.setStyle('m.texture.image', 'res/floor.jpg');
+cylinder1.setPosition(-50,-50, -50);
 
+var cylinder2 = new mono.Cylinder(5,5,100);
+cylinder2.setStyle('m.texture.image', 'res/floor.jpg');
+cylinder2.setPosition(50,-50, -50);
 
-////创建一个立方体
-//var cube = new mono.Cube(500,30,200);
-//cube.setStyle('m.texture.image', 'res/floor.jpg');
-//cube.setPosition(100,100,1200);
-//
-//box.add(cube);
+var cylinder3 = new mono.Cylinder(5,5,100);
+cylinder3.setStyle('m.texture.image', 'res/floor.jpg');
+cylinder3.setPosition(50,-50, 50);
 
-
+var cylinder4 = new mono.Cylinder(5,5,100);
+cylinder4.setStyle('m.texture.image', 'res/floor.jpg');
+cylinder4.setPosition(-50,-50, 50);  // y = up/down
+ 
+var csg1=new mono.CSG(cube); //立方体对应的运算体对象
+var csg2=new mono.CSG(cylinder1);  //圆柱体对应的运算体对象
+var csg3=new mono.CSG(cylinder2);
+var csg4=new mono.CSG(cylinder3);
+var csg5=new mono.CSG(cylinder4);
+var csg=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+csg.setPosition(-200, 10, 1200) 
+box.add(csg);
 	};
-
 	var loaderFunc=function(x, y, z, scaleX, scaleY, scaleZ){
 		return function(){
 			loader(x, y, z, scaleX, scaleY, scaleZ);
@@ -3212,7 +3228,6 @@ demo.registerCreator('desk', function(box, json){
 	};
 	setTimeout(loaderFunc(translate[0],translate[1],translate[2],scale[0],scale[1],scale[2]), demo.getRandomLazyTime());					
 });
-
 
 // create a desk object:
 demo.createDesk = function(x, y, z, scaleX, scaleY, scaleZ){
@@ -3226,16 +3241,12 @@ demo.createDesk = function(x, y, z, scaleX, scaleY, scaleZ){
 				'm.alphaTest': 0.5,
 				'm.visible': true,
 				'm.texture.image': pic,
-
 			});
-
 	plant.setPosition(100,0,1200);
 	plant.setScale(10, 10, 10);
 	plant.setClient('type', 'desk');
 	return plant;
 }
-
-
 
 //---------------------------------------------------------------------------------------------------------//
 
@@ -3946,13 +3957,13 @@ var dataJson={
 		[-350, 1150],
 		[-350,-400]],   // x, y
 		children: [
-//		{
-//			type: 'window',
-//			translate: [10, -10, -640],  // glass wall
-//			width: 1580,
-//			height: 220,
-//			depth: 50, 
-//		},
+		{
+			type: 'window',
+			translate: [-600,30,700],
+			width: 250,
+			height: 150,
+			depth: 50, 
+		},
 		{
 			type: 'window',
 //			translate: [200, 30, 650],
@@ -3961,17 +3972,17 @@ var dataJson={
 			height: 200,
 			depth: 50, 
 		},
-		{
-			type: 'door',
-			width: 130,
-			height: 180,
-			depth: 26,
-			translate: [-600,0,800],
-			rotation: Math.PI,
-			p1: 30,
-			p2: 30,
-			
-		},
+//		{
+//			type: 'door',
+//			width: 130,
+//			height: 180,
+//			depth: 26,
+//			translate: [-600,0,800],
+//			rotation: Math.PI,
+//			p1: 30,
+//			p2: 30,
+//			
+//		},
 			{
 			type: 'door',
 			width: 130,

@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    <title>TWaver 3D机房</title>
-    <link rel="stylesheet" href="style.css">    
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<script>
+		function room1(){
+			console.log('---------->');
+			window.location.href='room1.html';
+		};
+		function room2(){
+			window.location.href='room2.html';
+		};
+		
+	</script>
+	<body>
+		<button onclick="room1()">room1</button>
+		<button onclick="room2()">room2</button>
+	</body>
 
-<body onload = 'demo.init("3d_view")' style="margin:0px;">
-	<div id='3d_view'></div>
-	<script type="text/javascript" src = "lib.js"></script>
-	<script type="text/javascript" src = "room.js"></script>
-</body>
 </html>
