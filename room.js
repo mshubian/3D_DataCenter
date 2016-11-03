@@ -2211,20 +2211,20 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
-demo.registerFilter('floor_box', function(box, json){
-	return {
-		type: 'cube',
-		width: 100,
-		height: 100,
-		depth: 100,
-		shadow: true,
-		sideColor: '#C3D5EE',
-		topColor: '#D6E4EC',
-		client: {
-			type: 'floor_box'
-		}
-	};
-});
+//demo.registerFilter('floor_box', function(box, json){
+//	return {
+//		type: 'cube',
+//		width: 100,
+//		height: 100,
+//		depth: 100,
+//		shadow: true,
+//		sideColor: '#C3D5EE',
+//		topColor: '#D6E4EC',
+//		client: {
+//			type: 'floor_box'
+//		}
+//	};
+//});
 
 demo.registerFilter('plants', function(box, json){
 	var objects=[];
@@ -2471,7 +2471,7 @@ demo.registerFilter('door', function(box, json){
 		height: height-frameEdge/2-frameBottomEdge-2,
 		depth: 2,
 		translate:[x+(width-frameEdge)/4-p1,frameBottomEdge+1,z-p2],
-		rotate: [0, Math.PI/2, 0],
+		rotate: [0, r/2, 0],
 		sideColor: 'orange',
 		topColor: 'orange',
 		style:{
@@ -2487,28 +2487,30 @@ demo.registerFilter('door', function(box, json){
 			'animation': 'rotate.right.90.bounceOut',
 			'type': 'right-door',
 		},
-	},{
-		//door control.
-		type: 'cube',
-		width: 15,
-		height: 32,
-		depth: depth-3,
-		translate: [x-width/2-13, height*0.6, z],
-		style:{
-			'left.m.visible': false,
-			'right.m.visible': false,
-			'top.m.visible': false,
-			'bottom.m.visible': false,
-			'm.transparent': true,
-			'm.specularStrength': 50,
-			'front.m.texture.image': demo.getRes('lock.png'),
-			'back.m.texture.image': demo.getRes('lock.png'),
-		},
-		client:{
-			'dbl.func': demo.showDoorTable,
-			'type': 'door_lock',
-		},
-	}];
+	},
+//	{
+//		//door control.              need add dynamically
+//		type: 'cube',
+//		width: 15,
+//		height: 32,
+//		depth: depth-3,
+//		translate: [x-width/2-13, height*0.6, z],
+//		style:{
+//			'left.m.visible': false,
+//			'right.m.visible': false,
+//			'top.m.visible': false,
+//			'bottom.m.visible': false,
+//			'm.transparent': true,
+//			'm.specularStrength': 50,
+//			'front.m.texture.image': demo.getRes('lock.png'),
+//			'back.m.texture.image': demo.getRes('lock.png'),
+//		},
+//		client:{
+//			'dbl.func': demo.showDoorTable,
+//			'type': 'door_lock',
+//		},
+//	}
+	];
 });
 
 //demo.registerFilter('glass_wall', function(box, json){
@@ -3191,17 +3193,14 @@ demo.registerCreator('desk', function(box, json){
 	var x=translate[0], y=translate[1], z=translate[2];
 
 	var loader=function(x, y, z, scaleX, scaleY, scaleZ){
-//		var plant=demo.createDesk(x, y, z, scaleX, scaleY, scaleZ);
-//		plant.shadow = shadow;
-//		box.add(plant);
 
 
-//创建一个立方体
-var cube = new mono.Cube(500,30,200);
-cube.setStyle('m.texture.image', 'res/floor.jpg');
-cube.setPosition(100,100,1200);
-
-box.add(cube);
+////创建一个立方体
+//var cube = new mono.Cube(500,30,200);
+//cube.setStyle('m.texture.image', 'res/floor.jpg');
+//cube.setPosition(100,100,1200);
+//
+//box.add(cube);
 
 
 	};
@@ -3920,13 +3919,13 @@ var dataJson={
 	objects: [{
 		type: 'floor',
 		width: 2000,
-		depth: 1800,
+		depth: 2000,
 	},{
 		type: 'floor_cut',
-		width: 200,
+		width: 130,
 		height: 20,
-		depth: 260,
-		translate: [-348,0,430],
+		depth: 200,
+		translate: [-700,0,900],
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
 		type: 'floor_box',
@@ -3969,20 +3968,31 @@ var dataJson={
 			depth: 26,
 			translate: [-600,0,800],
 			rotation: Math.PI,
-			p1: 20,
+			p1: 30,
 			p2: 30,
 			
 		},
-//		{
-//			type: 'door',
-//			width: 130,
-//			height: 180,
-//			depth: 26,
-//			translate: [200,0,800],
-//			rotation: 0,
-//			p1: 0,
-//			p2: 40,			
-//		}
+			{
+			type: 'door',
+			width: 130,
+			height: 180,
+			depth: 26,
+			translate: [-850,0,30],
+			rotation: Math.PI,
+			p1: 30,
+			p2: 30,
+			
+		},
+		{
+			type: 'door',
+			width: 130,
+			height: 180,
+			depth: 26,
+			translate: [-700,0,900],
+			rotation: 0,
+			p1: 0,
+			p2: 0,			
+		}
 		],
 	},
 	{
