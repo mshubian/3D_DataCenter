@@ -2182,20 +2182,20 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
-//demo.registerFilter('floor_box', function(box, json){
-//	return {
-//		type: 'cube',
-//		width: 100,
-//		height: 100,
-//		depth: 100,
-//		shadow: true,
-//		sideColor: '#C3D5EE',
-//		topColor: '#D6E4EC',
-//		client: {
-//			type: 'floor_box'
-//		}
-//	};
-//});
+demo.registerFilter('floor_box', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		client: {
+			type: 'floor_box'
+		}
+	};
+});
 
 demo.registerFilter('plants', function(box, json){
 	var objects=[];
@@ -3877,8 +3877,8 @@ var dataJson={
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
 		type: 'floor_box',
-		width: 300,
-		height: 100,
+		width: 150,
+		height: 300,
 		depth: 100,
 		translate: [100, 	0, 1200],	
 	},
