@@ -2239,6 +2239,30 @@ demo.registerFilter('racks', function(box, json){
 	return objects;
 });
 
+demo.registerFilter('other_racks', function(box, json){
+	var objects=[];
+	var translates=json.translates;
+	var severities=json.severities || [];
+	var labels=json.labels || [];
+	if(translates){
+		for(var i=0;i<translates.length;i++){
+			var translate=translates[i];
+			var severity=severities[i];
+			var label=labels[i] || '';
+			var rack={
+				type: 'other_rack',
+				shadow: true,
+				translate: translate,
+				severity: severity,
+				label: label,
+			};
+			demo.copyProperties(json, rack, ['type', 'translates', 'translate', 'severities']);
+			objects.push(rack);
+		}
+	}
+	return objects;
+});
+
 demo.registerFilter('wall', function(box, json){	
 	var objects=[];
 
@@ -2793,6 +2817,7 @@ demo.registerCreator('rack', function(box, json){
 	rack.setClient('type', 'rack');
 	rack.setClient('origin', rack.getPosition().clone());
 	rack.setClient('loaded', false);
+	rack.setRotation(0, Math.PI/180 * 270, 0);
 	rack.shadow = shadow;
 
 	var rackDoor = new mono.Cube(width, height, 2);
@@ -2806,10 +2831,10 @@ demo.registerCreator('rack', function(box, json){
 	});
 	rackDoor.setParent(rack);
 	rack.door=rackDoor;
-	rackDoor.setPosition(0, 0, depth/2+1); 
+	rackDoor.setPosition(0, 0, depth/2+1);
 	rackDoor.setClient('animation','rotate.right.100');
 	rackDoor.setClient('type', 'rack.door');
-	rackDoor.setClient('animation.done.func', function(){	
+	rackDoor.setClient('animation.done.func', function(){
 		if(rack.getClient('loaded') || !rackDoor.getClient('animated')){
 			return;
 		}
@@ -2919,6 +2944,188 @@ demo.registerCreator('rack', function(box, json){
 		rack.alarm=alarm;
 		box.getAlarmBox().add(alarm);
 	}			
+	var loadFunction = function(){
+		loader(box, width, height, depth, severity, rack, json);
+	};
+	rack.setClient('rack.loader', loadFunction);
+});
+
+demo.registerCreator('other_rack', function(box, json){
+	var translate=json.translate || [0,0,0];
+	var x=translate[0],
+		y=translate[1],
+		z=translate[2];
+	var width=json.width || 60;
+	var height=json.height || 200;
+	var depth=json.depth || 80;
+	var severity=json.severity;
+	var label=json.label;
+	var shadow = json.shadow;
+
+	var rack= new mono.Cube(width, height, depth);
+	rack.s({
+		'm.color': '#557E7A',
+		'left.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'right.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'front.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'back.m.lightmap.image':demo.getRes('outside_lightmap.jpg'),
+		'top.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'left.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'right.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'back.m.normalmap.image':demo.getRes('metal_normalmap.jpg'),
+		'top.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'left.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'right.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'back.m.specularmap.image': demo.getRes('outside_lightmap.jpg'),
+		'top.m.envmap.image': demo.getEnvMap(),
+		'left.m.envmap.image': demo.getEnvMap(),
+		'right.m.envmap.image': demo.getEnvMap(),
+		'back.m.envmap.image': demo.getEnvMap(),
+		'm.ambient': '#557E7A',
+		'm.type':'phong',
+		'm.specularStrength': 50,
+		'front.m.texture.image':demo.getRes('rack.jpg'),
+		'front.m.texture.repeat': new mono.XiangliangTwo(1,1),
+		'front.m.specularmap.image':demo.getRes('white.png'),
+		'front.m.color':'#666',
+		'front.m.ambient':'#666',
+		'front.m.specularStrength': 200,
+	});
+	rack.setPosition(x, height/2+1+y, z);
+
+	var labelCanvas=demo.generateAssetImage(label);
+	rack.setStyle('top.m.texture.image', labelCanvas);
+	rack.setStyle('top.m.specularmap.image', labelCanvas);
+	rack.setClient('label', label);
+	rack.setClient('type', 'other_rack');
+	rack.setClient('origin', rack.getPosition().clone());
+	rack.setClient('loaded', false);
+	rack.shadow = shadow;
+
+	var rackDoor = new mono.Cube(width, height, 2);
+	rackDoor.s({
+		'm.type':'phong',
+		'm.color': '#A5F1B5',
+		'm.ambient': '#A4F4EC',
+		'front.m.texture.image': demo.getRes('rack_front_door.jpg'),
+		'back.m.texture.image': demo.getRes('rack_door_back.jpg'),
+		'm.envmap.image': demo.getEnvMap(),
+	});
+	rackDoor.setParent(rack);
+	rack.door=rackDoor;
+	rackDoor.setPosition(0, 0, depth/2+1);
+	rackDoor.setClient('animation','rotate.right.100');
+	rackDoor.setClient('type', 'rack.door');
+	rackDoor.setClient('animation.done.func', function(){
+		if(rack.getClient('loaded') || !rackDoor.getClient('animated')){
+			return;
+		}
+		var fake=rack.clone();
+		fake.s({
+			'm.color': 'red',
+			'm.ambient': 'red',
+			'm.texture.image': null,
+			'top.m.normalmap.image': demo.getRes('outside_lightmap.jpg'),
+			'top.m.specularmap.image': demo.getRes('white.png'),
+		});
+		fake.setDepth(fake.getDepth()-2);
+		fake.setWidth(fake.getWidth()-2);
+		box.add(fake);
+
+		rack.s({
+			'm.transparent': true,
+			'm.opacity': 0.5,
+		});
+
+		new twaver.Animate({
+			from: 0,
+			to: fake.getHeight(),
+			dur: 2000,
+			easing: 'easeOut',
+			onUpdate: function (value) {
+				fake.setHeight(value);
+				fake.setPositionY(value/2);
+			},
+			onDone: function(){
+				box.remove(fake);
+				rack.s({
+					'm.transparent': false,
+					'm.opacity': 1,
+				});
+				var loader = rack.getClient('rack.loader');
+				if(loader && rackDoor.getClient('animated') && !rack.getClient('loaded')){
+					loader();
+					rack.setClient('loaded', true);
+
+					if(rack.getClient('loaded.func')){
+						rack.getClient('loaded.func')(rack);
+					}
+				}
+			}
+		}).play();
+	});
+
+	var loader=function(box, width, height, depth, severity, rack, json){
+		var cut=new mono.Cube(width*0.75, height-10, depth*0.7);
+		cut.s({
+			'm.color': '#333333',
+			'm.ambient': '#333333',
+			'm.lightmap.image': demo.getRes('inside_lightmap.jpg'),
+			'bottom.m.texture.repeat': new mono.XiangliangTwo(2,2),
+			'left.m.texture.image': demo.getRes('rack_panel.jpg'),
+			'right.m.texture.image': demo.getRes('rack_panel.jpg'),
+			'back.m.texture.image': demo.getRes('rack_panel.jpg'),
+			'back.m.texture.repeat': new mono.XiangliangTwo(1,1),
+			'top.m.lightmap.image': demo.getRes('floor.jpg'),
+		});
+		cut.setPosition(0, 0, depth/2-cut.getDepth()/2+1);
+		box.remove(rack);
+		if(rack.alarm){
+			box.getAlarmBox().remove(rack.alarm);
+		}
+
+		var cube = rack.clone();
+		cube.p(0, 0, 0);
+
+		var newRack=new mono.ComboNode([cube, cut], ['-']);
+
+		var x=rack.getPosition().x;
+		var y=rack.getPosition().y;
+		var z=rack.getPosition().z;
+
+		newRack.p(x, y, z);
+		newRack.setClient('type', 'other_rack');
+		newRack.oldRack=rack;
+		rack.newRack=newRack;
+		newRack.shadow = shadow;
+		box.add(newRack);
+
+		if(severity){
+			var alarm = new mono.Alarm(newRack.getId(), newRack.getId(), severity);
+			newRack.setStyle('alarm.billboard.vertical', true);
+			newRack.alarm=alarm;
+			box.getAlarmBox().add(alarm);
+		}
+
+		//set child for newrack
+		var children = rack.getChildren();
+		children.forEach(function(child){
+			if(child && !(child instanceof mono.Billboard)){
+				child.setParent(newRack);
+			}
+		});
+
+		demo.loadRackContent(box, x, y, z, width, height, depth, severity, cube, cut, json, newRack, rack);
+	};
+
+	box.add(rack);
+	box.add(rackDoor);
+	if(severity){
+		var alarm = new mono.Alarm(rack.getId(), rack.getId(), severity);
+		rack.setStyle('alarm.billboard.vertical', true);
+		rack.alarm=alarm;
+		box.getAlarmBox().add(alarm);
+	}
 	var loadFunction = function(){
 		loader(box, width, height, depth, severity, rack, json);
 	};
@@ -3759,30 +3966,87 @@ var dataJson={
 		rotate: [0, Math.PI/180*90, 0],
 		translate: [900, 0, 0],	  // location
 	},{
-		type: 'racks',		
+		type: 'other_racks',
 		translates: [
-			[-160-10, 0, 350],
-			[-160+124-20, 0, 350],
-			[-160+124+124-30, 0, 350],
-			[-160+124+124+124-40, 0, 350],
-			[-160+124+124+124+124-50, 0, 350],
-			[-160+124+124+124+124+124-60, 0, 350],
-			[-160-10, 0, 0],
-			[-160+124-20, 0, 0],
-			[-160+124+124-30, 0, 0],
-			[-160+124+124+124-40, 0, 0],
-			[-160+124+124+124+124-50, 0, 0],
-			[-160+124+124+124+124+124-60, 0, 0],
-			[-160-10, 0, -350],
-			[-160+124-20, 0, -350],
-			[-160+124+124-30, 0, -350],
-			[-160+124+124+124-40, 0, -350],
-			[-160+124+124+124+124-50, 0, -350],
-			[-160+124+124+124+124+124-60, 0, -350],
+			[360, 0, 350],
+			[360+62, 0, 350],
+			[360+62+62, 0, 350],
+			[360+62+62+62, 0, 350],
+			[360+62+62+62+62, 0, 350],
 		],
 		labels: (function(){
 			var labels=[];
-			for(var k=1; k<21; k++){
+			for(var k=53; k<58; k++){
+				var label = '1A';
+				if(k < 10){
+ 					label += '0';
+				}
+				labels.push(label + k);
+			}
+			return labels;
+		})(),
+		severities: [mono.AlarmSeverity.CRITICAL, null,null,mono.AlarmSeverity.WARNING,mono.AlarmSeverity.CRITICAL,null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,mono.AlarmSeverity.WARNING,null,mono.AlarmSeverity.MINOR],
+	},{
+		type: 'racks',		
+		translates: [
+			[-160, 0, 350],
+			[-160, 0, 350-62],
+			[-160, 0, 350-62-62],
+			[-160, 0, 350-62-62-62],
+			[-160, 0, 350-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62],
+			//[-160, 0, 350-62-62-62-62-62-62],
+			//[-160, 0, 350-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[-160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350],
+			[0, 0, 350-62],
+			[0, 0, 350-62-62],
+			[0, 0, 350-62-62-62],
+			[0, 0, 350-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[0, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350],
+			[160, 0, 350-62],
+			[160, 0, 350-62-62],
+			[160, 0, 350-62-62-62],
+			[160, 0, 350-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[160, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[360, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[560, 0, 350-62-62-62-62-62-62-62-62-62-62-62],
+			[560, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62],
+			[560, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[560, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[560, 0, 350-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+		],
+		labels: (function(){
+			var labels=[];
+			for(var k=1; k<53; k++){
 				var label = '1A';
 				if(k < 10){
  					label += '0';
