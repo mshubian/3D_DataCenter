@@ -2379,6 +2379,7 @@ demo.registerFilter('window', function(box, json){
 		height: height,
 		depth: depth, 
 		translate: [x, y, z],
+		rotate: [0, Math.PI/2, 0],
 		op: '-',
 		sideColor: '#B8CAD5',
 		topColor: '#D6E4EC',		
@@ -2390,6 +2391,7 @@ demo.registerFilter('window', function(box, json){
 		height: height-0.5,
 		depth: glassDepth,
 		translate: [x, y, z],
+		rotate: [0, Math.PI/2, 0],
 		op: '+',
 		style: {			
 			'm.color':'#58ACFA',
@@ -2411,6 +2413,7 @@ demo.registerFilter('window', function(box, json){
 		height: platformHeight,
 		depth: platformDepth, 
 		translate: [x, y, z+platformOffsetZ],
+		rotate: [0, Math.PI/2, 0],
 		op: '+',
 		sideColor: '#A5BDDD',
 		topColor: '#D6E4EC',
@@ -2427,6 +2430,9 @@ demo.registerFilter('door', function(box, json){
 		depth=json.depth || 26;	
 	var frameEdge=10,
 		frameBottomEdge=2;
+	var r = json.rotation || 0;
+	var p1 = json.p1 || 0;
+	var p2 = json.p2 || 0;
 
 	return [{
 		//door frame.
@@ -2435,6 +2441,8 @@ demo.registerFilter('door', function(box, json){
 		height: height,
 		depth: depth,
 		translate: [x, y, z],
+//		translate: [10 ,10, 10],
+		rotate: [0, r/2, 0],
 		op: '+',
 		sideColor: '#C3D5EE',
 		topColor: '#D6E4EC',
@@ -2446,6 +2454,7 @@ demo.registerFilter('door', function(box, json){
 		depth: depth+2,
 		op: '-',
 		translate:[x,y+frameBottomEdge,z],
+		rotate: [0, r/180*90, 0],
 		sideColor: '#B8CAD5',
 		topColor: '#D6E4EC',			
 	},{
@@ -2454,7 +2463,9 @@ demo.registerFilter('door', function(box, json){
 		width: (width-frameEdge)/2-2,
 		height: height-frameEdge/2-frameBottomEdge-2,
 		depth: 2,
-		translate:[x-(width-frameEdge)/4,frameBottomEdge+1,z],
+		translate:[x-(width-frameEdge)/4+p1,frameBottomEdge+1,z+p2],   // relative to door frame
+//		translate:[0,0,0],
+		rotate: [0, r/2, 0],
 		sideColor: 'orange',
 		topColor: 'orange',
 		style:{
@@ -2476,7 +2487,8 @@ demo.registerFilter('door', function(box, json){
 		width: (width-frameEdge)/2-2,
 		height: height-frameEdge/2-frameBottomEdge-2,
 		depth: 2,
-		translate:[x+(width-frameEdge)/4,frameBottomEdge+1,z],
+		translate:[x+(width-frameEdge)/4-p1,frameBottomEdge+1,z-p2],
+		rotate: [0, Math.PI/2, 0],
 		sideColor: 'orange',
 		topColor: 'orange',
 		style:{
@@ -3779,18 +3791,36 @@ var dataJson={
 //		},
 		{
 			type: 'window',
-			translate: [200, 30, 650],
-			width: 420,
-			height: 150,
+//			translate: [200, 30, 650],
+			translate: [800, 0, 10],
+			width: 1050,
+			height: 200,
 			depth: 50, 
-		},{
+		},
+		{
 			type: 'door',
 			width: 130,
 			height: 180,
 			depth: 26,
-			translate: [-500,0,800], // location
-		}],
-	},{
+			translate: [-600,0,800],
+			rotation: Math.PI,
+			p1: 20,
+			p2: 30,
+			
+		},
+//		{
+//			type: 'door',
+//			width: 130,
+//			height: 180,
+//			depth: 26,
+//			translate: [200,0,800],
+//			rotation: 0,
+//			p1: 0,
+//			p2: 40,			
+//		}
+		],
+	},
+	{
 		type: 'desks',
 		shadow: false,
 		translates: [[-200, 10, 1200]],
