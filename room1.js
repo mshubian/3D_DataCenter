@@ -1691,7 +1691,7 @@ var demo = {
 		span.style['padding']='10px';
 		span.style['color']='darkslategrey';
 		span.innerHTML='<b>告警描述</b>'+
-			'<p>中兴S330板卡有EPE1，LP1，OL16，CSB,SC，EPE1（2M电口）与LP1（155M光）与用户路由器连接。'+
+			'<p>lenovoS330板卡有EPE1，LP1，OL16，CSB,SC，EPE1（2M电口）与LP1（155M光）与用户路由器连接。'+
 			'EPE1上发生TU-AIS ,TU-LOP，UNEQ，误码秒告警，所配业务均出现，用户路由器上出现频繁up，down告警。'+
 			'用户路由器上与1块LP1（有vc12级别的交叉）连接的cpos板卡上也有频繁up，down告警，与另一块LP1（vc4穿通）'+
 			'连接的cpos卡上无告警</p>'+
@@ -1861,9 +1861,9 @@ var demo = {
 			'<p>开/关机</p>'+
 			'<p>Deploy</p>'+
 			'<p></p>';
-		demo.showDialog(span, 'SDH 2M支路板告警', 510, 250);
-		span.style['width']='484px';
-		span.style['height']='203px';
+		demo.showDialog(span, '信息显示', 360, 540);
+		span.style['width']='333px';
+		span.style['height']='495px';
 	},
 
 	toggleSmokeView: function(gl3dview){
