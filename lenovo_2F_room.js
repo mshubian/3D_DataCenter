@@ -3288,6 +3288,7 @@ demo.registerCreator('post', function(box, json){
 		'front.m.visible': true,
 	});
 	post.setPosition(x, y, z);
+	post.setRotation(0, Math.PI/180 * 90, 0)
 	post.setClient('type', 'post');
 
 	box.add(post);
@@ -4236,7 +4237,7 @@ var dataJson={
 		severities: [mono.AlarmSeverity.CRITICAL, null,null,mono.AlarmSeverity.WARNING,mono.AlarmSeverity.CRITICAL,null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,mono.AlarmSeverity.WARNING,null,mono.AlarmSeverity.MINOR],
 	},{
 		type: 'post',
-		translate: [-200, 100, -685],
+		translate: [-839, 100, 450],
 		width: 70,
 		height: 120,
 		pic: demo.getRes('post.jpg'),
