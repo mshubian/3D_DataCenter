@@ -2218,7 +2218,7 @@ demo.registerFilter('ups1', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2234,7 +2234,7 @@ demo.registerFilter('ups2', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2250,7 +2250,7 @@ demo.registerFilter('ups3', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2266,7 +2266,7 @@ demo.registerFilter('ups4', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2282,7 +2282,7 @@ demo.registerFilter('ups5', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2298,7 +2298,7 @@ demo.registerFilter('ups6', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2314,7 +2314,7 @@ demo.registerFilter('ups7', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2330,7 +2330,7 @@ demo.registerFilter('ups8', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
@@ -2346,7 +2346,7 @@ demo.registerFilter('ups9', function(box, json){
 		topColor: '#D6E4EC',
 		style: {
 			'm.color': 'purple',
-			'top.m.texture.image': demo.getRes('pex.png'),
+			'top.m.texture.image': demo.getRes('pex.PNG'),
 		}
 	};
 });
