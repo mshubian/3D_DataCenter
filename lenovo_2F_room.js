@@ -2217,7 +2217,7 @@ demo.registerFilter('pei_dian', function(box, json){
 		sideColor: '#C3D5EE',
 		topColor: '#D6E4EC',
 		style: {
-			'm.color': 'blue',
+			'm.color': 'orange',
 			'top.m.texture.image': demo.getRes('peidian.PNG'),
 		}
 	};
