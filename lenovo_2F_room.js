@@ -4095,14 +4095,14 @@ var dataJson={
 		alarm: mono.AlarmSeverity.WARNING,
 	},{
 		type: 'extinguisher',
-		translate: [750, -470],
+		translate: [280, -670],
 	},{
 		type: 'extinguisher',
-		translate: [750, -450],
+		translate: [280, -650],
 		arrow: true,
 	},{
 		type: 'extinguisher',
-		translate: [750, -430],
+		translate: [280, -630],
 	},{
 		type: 'smoke',
 		translate: [300, 180, 240],
