@@ -2216,8 +2216,9 @@ demo.registerFilter('floor_box', function(box, json){
 		shadow: true,
 		sideColor: '#C3D5EE',
 		topColor: '#D6E4EC',
-		client: {
-			type: 'floor_box'
+		style: {
+			'm.color': 'blue',
+			'top.m.texture.image': demo.getRes('ups.png'),
 		}
 	};
 });
@@ -3681,13 +3682,10 @@ var dataJson={
 	},{
 		type: 'floor_box',
 		width: 150,
-		height: 300,
+		height: 200,
 		depth: 100,
-		translate: [100, 	0, 1200],	
+		translate: [-750, 0, 820],
 	},
-	
-	
-	
 	{
 		type: 'wall',
 		height: 200,		
