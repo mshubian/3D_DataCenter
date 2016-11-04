@@ -4092,7 +4092,18 @@ var dataJson={
 			rotation: Math.PI,
 			p1: 30,
 			p2: 30,		
+		},
+		{
+			type: 'door',
+			width: 200,
+			height: 200,
+			depth: 26,
+			translate: [390,0,-700],
+			rotation: 0,
+			p1: 0,
+			p2: 0,		
 		}
+		
 		
 
 ],
