@@ -3948,7 +3948,7 @@ var dataJson={
 		],
 		labels: (function(){
 			var labels=[];
-			for(var k=1; k<53; k++){
+			for(var k=1; k<58; k++){
 				var label = '1A';
 				if(k < 10){
  					label += '0';
@@ -4007,14 +4007,14 @@ var dataJson={
 		],
 	},{
 		type: 'gleye',
-		translate: [80, 200, -610],
+		translate: [80, 200, -670],
 	},{
 		type: 'gleye',
-		translate: [770, 200, 400],
+		translate: [970, 200, -170],
 		angle: 90,
 	},{
 		type: 'gleye',
-		translate: [-450, 200, -510],
+		translate: [-450, 200, -670],
 		alarm: mono.AlarmSeverity.WARNING,
 	},{
 		type: 'extinguisher',
