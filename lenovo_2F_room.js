@@ -2400,6 +2400,22 @@ demo.registerFilter('floor_box_right', function(box, json){
 	};
 });
 
+demo.registerFilter('manage_center', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'yellow',
+			'top.m.texture.image': demo.getRes('manage_center.PNG'),
+		}
+	};
+});
+
 //demo.registerFilter('plants', function(box, json){
 //	var objects=[];
 //	var translates=json.translates;
@@ -3948,6 +3964,12 @@ var dataJson={
 		height: 200,
 		depth: 100,
 		translate: [-430, 0, 820],
+	},{
+		type: 'manage_center',
+		width: 150,
+		height: 200,
+		depth: 100,
+		translate: [900, 0, 150],
 	},
 	{
 		type: 'wall',
@@ -4093,7 +4115,18 @@ var dataJson={
 			rotation: Math.PI,
 			p1: 30,
 			p2: 30,		
+		},
+		{
+			type: 'door',
+			width: 200,
+			height: 200,
+			depth: 26,
+			translate: [390,0,-700],
+			rotation: 0,
+			p1: 0,
+			p2: 0,		
 		}
+		
 		
 
 ],
@@ -4219,11 +4252,11 @@ var dataJson={
 			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62],
 			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
 			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
-			[660, 0, 350],
-			[660+62, 0, 350],
-			[660+62+62, 0, 350],
-			[660+62+62+62, 0, 350],
-			[660+62+62+62+62, 0, 350],
+			[660, 0, 450],
+			[660+62, 0, 450],
+			[660+62+62, 0, 450],
+			[660+62+62+62, 0, 450],
+			[660+62+62+62+62, 0, 450],
 		],
 		labels: (function(){
 			var labels=[];
