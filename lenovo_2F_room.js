@@ -2207,7 +2207,39 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
+demo.registerFilter('pei_dian', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'blue',
+			'top.m.texture.image': demo.getRes('peidian.PNG'),
+		}
+	};
+});
+
 demo.registerFilter('floor_box', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'blue',
+			'top.m.texture.image': demo.getRes('ups.png'),
+		}
+	};
+});
+
+demo.registerFilter('floor_box_right', function(box, json){
 	return {
 		type: 'cube',
 		width: 100,
@@ -3680,11 +3712,25 @@ var dataJson={
 		translate: [400,0,900],
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
-		type: 'floor_box',
+		type: 'pei_dian',
 		width: 150,
 		height: 200,
 		depth: 100,
 		translate: [-750, 0, 820],
+	},
+	{
+		type: 'floor_box',
+		width: 150,
+		height: 200,
+		depth: 100,
+		translate: [-600, 0, 820],
+	},
+	{
+		type: 'floor_box_right',
+		width: 150,
+		height: 200,
+		depth: 100,
+		translate: [-450, 0, 820],
 	},
 	{
 		type: 'wall',
