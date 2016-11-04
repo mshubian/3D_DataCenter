@@ -2208,7 +2208,39 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
+demo.registerFilter('pei_dian', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'orange',
+			'top.m.texture.image': demo.getRes('peidian.PNG'),
+		}
+	};
+});
+
 demo.registerFilter('floor_box', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'blue',
+			'top.m.texture.image': demo.getRes('ups.png'),
+		}
+	};
+});
+
+demo.registerFilter('floor_box_right', function(box, json){
 	return {
 		type: 'cube',
 		width: 100,
@@ -3696,11 +3728,25 @@ var dataJson={
 		translate: [400,0,900],
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
-		type: 'floor_box',
+		type: 'pei_dian',
 		width: 150,
 		height: 200,
 		depth: 100,
 		translate: [-750, 0, 820],
+	},
+	{
+		type: 'floor_box',
+		width: 150,
+		height: 200,
+		depth: 100,
+		translate: [-600, 0, 820],
+	},
+	{
+		type: 'floor_box_right',
+		width: 150,
+		height: 200,
+		depth: 100,
+		translate: [-450, 0, 820],
 	},
 	{
 		type: 'wall',
@@ -3966,12 +4012,12 @@ var dataJson={
 			[100, 0, 650-62-62-62-62-62-62-62-62-62-62-62-62-62],
 			[100, 0, 650-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
 			[100, 0, 650-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
-			[560, 0, 650-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62-20],
-			[800, 0, 500-62-62-62-62-62-62-62-62-62-62-62],
-			[800, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62],
-			[800, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62],
-			[800, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
-			[800, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[660, 0, 650-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62-20],
+			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62],
+			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62],
+			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
+			[860, 0, 500-62-62-62-62-62-62-62-62-62-62-62-62-62-62-62],
 			[660, 0, 350],
 			[660+62, 0, 350],
 			[660+62+62, 0, 350],
@@ -4050,14 +4096,14 @@ var dataJson={
 		alarm: mono.AlarmSeverity.WARNING,
 	},{
 		type: 'extinguisher',
-		translate: [750, -470],
+		translate: [280, -670],
 	},{
 		type: 'extinguisher',
-		translate: [750, -450],
+		translate: [280, -650],
 		arrow: true,
 	},{
 		type: 'extinguisher',
-		translate: [750, -430],
+		translate: [280, -630],
 	},{
 		type: 'smoke',
 		translate: [300, 180, 240],
