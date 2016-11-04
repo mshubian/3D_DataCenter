@@ -3498,7 +3498,7 @@ demo.registerFilter('gleye', function(box, json){
 	var direction=130;
 
 	var loader=function(box, x, y, z, angle, direction){		
-		var gleye=demo.createGleye(box, x, y, z, angle, direction);
+		var gleye=demo.createGleye(box, x, y, z, angle, direction, json);
 		box.add(gleye);
 	}
 
@@ -3510,7 +3510,7 @@ demo.registerFilter('gleye', function(box, json){
 	setTimeout(loaderFunc(box, x, y, z, angle, direction), demo.getRandomLazyTime());					
 });
 
-demo.createGleye=function(box, x, y, z, angle, direction){		
+demo.createGleye=function(box, x, y, z, angle, direction, json){		
 	var body=new mono.Cylinder(4,4,15);
 	body.s({
 		'm.texture.image': demo.getRes('bbb.png'),
@@ -3543,6 +3543,7 @@ demo.createGleye=function(box, x, y, z, angle, direction){
 	});
 	gleye.setRotation(Math.PI/180*100, 0, Math.PI/180*angle);
 	gleye.setPosition(x,y,z);		
+	gleye.setRotation(json.r[0], json.r[1], json.r[2]);  // 
 	gleye.setClient('type', 'gleye');
 	gleye.setClient('dbl.func', function(){
 		demo.showVideoDialog('Gleye #: C300-493A  |  Status: OK');
@@ -4113,7 +4114,18 @@ var dataJson={
 			rotation: Math.PI,
 			p1: 30,
 			p2: 30,		
+		},
+		{
+			type: 'door',
+			width: 200,
+			height: 200,
+			depth: 26,
+			translate: [390,0,-700],
+			rotation: 0,
+			p1: 0,
+			p2: 0,		
 		}
+		
 		
 
 ],
@@ -4306,16 +4318,33 @@ var dataJson={
 		],
 	},{
 		type: 'gleye',
-		translate: [80, 200, -670],
+		translate: [250, 180, -670],
+		r: [Math.PI/2, 0, 0],
 	},{
 		type: 'gleye',
-		translate: [970, 200, -170],
+		translate: [970, 180, -170],
 		angle: 90,
+		r: [Math.PI/2, Math.PI, Math.PI/2+Math.PI],
 	},{
 		type: 'gleye',
-		translate: [-450, 200, -670],
+		translate: [-820, 180, -400],
 		alarm: mono.AlarmSeverity.WARNING,
-	},{
+		r: [Math.PI/2, Math.PI, Math.PI/2],
+	},
+	{
+		type: 'gleye',
+		translate: [-820, 180, Math.PI/2],
+		alarm: mono.AlarmSeverity.WARNING,
+		r: [Math.PI/2, Math.PI, Math.PI/2],
+	},
+	{
+		type: 'gleye',
+		translate: [-820, 180, 400],
+		alarm: mono.AlarmSeverity.WARNING,
+		r: [Math.PI/2, Math.PI, Math.PI/2],
+	},
+	
+	{
 		type: 'extinguisher',
 		translate: [280, -670],
 	},{
