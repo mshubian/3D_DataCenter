@@ -1262,7 +1262,7 @@ var demo = {
 		});
 		if(gl3dview.temperatureView){
 			demo.createTemperatureBoard(gl3dview.getServa());
-			demo.createTemperatureWall(gl3dview.getServa());
+			//demo.createTemperatureWall(gl3dview.getServa());
 		}else{
 			gl3dview.getServa().remove(gl3dview.getServa().temperaturePlane);
 			delete gl3dview.getServa().temperaturePlane;
