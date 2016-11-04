@@ -1008,7 +1008,7 @@ var demo = {
 			context.textBaseline = 'middle';
 			context.fillText(text2, x, y);
 		}
-		marker(context, 'Lenovo 2F Lab', '联想大厦', 1850, 1800);
+		marker(context, 'Lenovo 2F Lab', '联想大厦', 2050, 1800);
 
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
@@ -2222,23 +2222,23 @@ demo.registerFilter('floor_box', function(box, json){
 	};
 });
 
-demo.registerFilter('plants', function(box, json){
-	var objects=[];
-	var translates=json.translates;
-	if(translates){
-		for(var i=0;i<translates.length;i++){
-			var translate=translates[i];
-			var plant={
-				type: 'plant',
-				shadow: true,
-				translate: translate,
-			};
-			demo.copyProperties(json, plant, ['type', 'translates', 'translate']);
-			objects.push(plant);
-		}
-	}
-	return objects;
-});
+//demo.registerFilter('plants', function(box, json){
+//	var objects=[];
+//	var translates=json.translates;
+//	if(translates){
+//		for(var i=0;i<translates.length;i++){
+//			var translate=translates[i];
+//			var plant={
+//				type: 'plant',
+//				shadow: true,
+//				translate: translate,
+//			};
+//			demo.copyProperties(json, plant, ['type', 'translates', 'translate']);
+//			objects.push(plant);
+//		}
+//	}
+//	return objects;
+//});
 
 demo.registerFilter('racks', function(box, json){
 	var objects=[];
@@ -3879,11 +3879,11 @@ var dataJson={
 //		shadow: true,
 //		translates: [[560, 0, 350],[560, 0, 0],[560, 0, -340],[-70, 0, 350],[-70, 0, 0],[-70, 0, -340]],
 //	},{
-		type: 'plants',
-		scale: [0.5, 0.3, 0.5],
-		shadow: false,
-		translates: [[100, 30, 650],[300, 30, 650]],  // translates: number of plants
-	},{
+//		type: 'plants',
+//		scale: [0.5, 0.3, 0.5],
+//		shadow: false,
+//		translates: [[100, 30, 650],[300, 30, 650]],  // translates: number of plants
+//	},{
 		type: 'glass_wall',
 		width: 1300,
 		rotate: [0, Math.PI/180*90, 0],
@@ -3970,7 +3970,7 @@ var dataJson={
 		severities: [mono.AlarmSeverity.CRITICAL, null,null,mono.AlarmSeverity.WARNING,mono.AlarmSeverity.CRITICAL,null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,mono.AlarmSeverity.WARNING,null,mono.AlarmSeverity.MINOR],
 	},{
 		type: 'post',
-		translate: [-200, 100, -635],
+		translate: [-200, 100, -685],
 		width: 70,
 		height: 120,
 		pic: demo.getRes('post.jpg'),
