@@ -4105,11 +4105,11 @@ var dataJson={
 		translate: [280, -630],
 	},{
 		type: 'smoke',
-		translate: [300, 180, 240],
+		translate: [100, 200, 250],
 		color: '#FAAC58',
 	},{
 		type: 'smoke',
-		translate: [-300, 180, -240],
+		translate: [-150, 200, -250],
 		color: '#B40431',
 	},{
 		type: 'water_cable',
