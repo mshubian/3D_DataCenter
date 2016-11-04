@@ -3024,6 +3024,15 @@ aa.setPosition(-780, 100, -600)
 var bb=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
 bb.setPosition(-780, 100, -500)
 
+var q=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+q.setPosition(-780, 100, 100)
+var w=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+w.setPosition(-780, 100, 200)
+var e=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+e.setPosition(-780, 100, 300)
+var r=csg1.union(csg2).union(csg3).union(csg4).union(csg5).toMesh();  //立方体减去圆柱体，生成残留对象，并进行mesh处理，返回运算结果3D对象
+r.setPosition(-780, 100, 0)
+
 
 
 box.add(csg);
@@ -3032,6 +3041,12 @@ box.add(csgb);
 box.add(csgbb);
 box.add(aa);
 box.add(bb);
+
+box.add(q);
+box.add(w);
+box.add(e);
+box.add(r);
+
 
 
 //box.add(aa);
@@ -3811,16 +3826,16 @@ var dataJson={
 			depth: 50, 
 			r: Math.PI,
 		},
-		{
-			type: 'door',
-			width: 130,
-			height: 200,
-			depth: 26,
-			translate: [650,0,0],
-			rotation: 0,
-			p1: 0,
-			p2: 0,		
-		},
+//		{
+//			type: 'door',
+//			width: 130,
+//			height: 200,
+//			depth: 26,
+//			translate: [650,0,0],
+//			rotation: 0,
+//			p1: 0,
+//			p2: 0,		
+//		},
 		{
 			type: 'door',
 			width: 130,
