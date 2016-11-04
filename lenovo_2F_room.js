@@ -2396,7 +2396,7 @@ demo.registerFilter('door', function(box, json){
 		type: 'cube',
 		width: width,
 		height: height,
-		depth: depth,
+		depth: 0,
 		translate: [x, y, z],
 //		translate: [10 ,10, 10],
 		rotate: [0, r/2, 0],
@@ -3670,7 +3670,7 @@ var dataJson={
 	objects: [{
 		type: 'floor',
 		width: 2500,
-		depth: 2000,
+		depth: 2800,
 	},{
 		type: 'floor_cut',
 		width: 130,
@@ -3698,7 +3698,7 @@ var dataJson={
 		[ 1000,-100 ],[ 1500, -100 ],
 		[1500, 1200 ] ,
 		
-		[1000, 1200], [1000, 1300],[-100 ,1300],
+		[1000, 1200], [1000, 1800],[-100 ,1800],
 		
 		[-100, 1200], [-350, 1200],[-350, -400]],
 		
@@ -3752,7 +3752,7 @@ var dataJson={
 			type: 'window',
 //			translate: [200, 30, 650],
 			translate: [500, 0, 100],  //   -------------- ok one
-			width: 1050,
+			width: 1000,
 			height: 200,
 			depth: 50, 
 			r: Math.PI,
@@ -3788,7 +3788,7 @@ var dataJson={
 		height: 200,		
 		translate: [-500, 0, -500],
 		
-		data:[ [ 1000,1200 ],    [ -100, 1200 ], ],
+		data:[ [ 800,1200 ],    [ -100, 1200 ], ],
     },
     	{
 	type: 'wall',
