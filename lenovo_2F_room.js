@@ -2207,6 +2207,150 @@ demo.registerFilter('floor_cut', function(box, json){
 	};
 });
 
+demo.registerFilter('ups1', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups2', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups3', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups4', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups5', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups6', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups7', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups8', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
+demo.registerFilter('ups9', function(box, json){
+	return {
+		type: 'cube',
+		width: 100,
+		height: 100,
+		depth: 100,
+		shadow: true,
+		sideColor: '#C3D5EE',
+		topColor: '#D6E4EC',
+		style: {
+			'm.color': 'purple',
+			'top.m.texture.image': demo.getRes('pex.png'),
+		}
+	};
+});
+
 demo.registerFilter('pei_dian', function(box, json){
 	return {
 		type: 'cube',
@@ -3727,6 +3871,61 @@ var dataJson={
 		translate: [400,0,900],
 		rotate: [Math.PI/180*3, 0, 0],
 	},{
+		type: 'ups1',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [-600, 0, -650],
+	},{
+		type: 'ups2',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [-510, 0, -650],
+	},{
+		type: 'ups3',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [-420, 0, -650],
+	},{
+		type: 'ups4',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [-280, 0, -650],
+	},{
+		type: 'ups5',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [-190, 0, -650],
+	},{
+		type: 'ups6',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [-100, 0, -650],
+	},{
+		type: 'ups7',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [40, 0, -650],
+	},{
+		type: 'ups8',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [130, 0, -650],
+	},{
+		type: 'ups9',
+		width: 80,
+		height: 200,
+		depth: 80,
+		translate: [220, 0, -650],
+	},
+	{
 		type: 'pei_dian',
 		width: 150,
 		height: 200,
@@ -3738,14 +3937,14 @@ var dataJson={
 		width: 150,
 		height: 200,
 		depth: 100,
-		translate: [-600, 0, 820],
+		translate: [-590, 0, 820],
 	},
 	{
 		type: 'floor_box_right',
 		width: 150,
 		height: 200,
 		depth: 100,
-		translate: [-450, 0, 820],
+		translate: [-430, 0, 820],
 	},
 	{
 		type: 'wall',
