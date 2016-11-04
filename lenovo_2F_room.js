@@ -1008,7 +1008,8 @@ var demo = {
 			context.textBaseline = 'middle';
 			context.fillText(text2, x, y);
 		}
-		marker(context, 'Lenovo 2F Lab', '联想大厦', 2050, 1800);
+		marker(context, 'Lenovo 2F Lab', '联想大厦', 2050, 2300);
+		marker(context, '机房管理中心', '联想大厦', 1300, 300);
 
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
