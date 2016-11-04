@@ -1008,7 +1008,7 @@ var demo = {
 			context.textBaseline = 'middle';
 			context.fillText(text2, x, y);
 		}
-		marker(context, 'Lenovo 2F Lab', '联想大厦', 1850, 1800);
+		marker(context, 'Lenovo 2F Lab', '联想大厦', 2050, 1800);
 
 		box.forEach(function(object){
 			if(object instanceof mono.Entity && object.shadow){
@@ -3970,7 +3970,7 @@ var dataJson={
 		severities: [mono.AlarmSeverity.CRITICAL, null,null,mono.AlarmSeverity.WARNING,mono.AlarmSeverity.CRITICAL,null, mono.AlarmSeverity.MINOR, mono.AlarmSeverity.WARNING,mono.AlarmSeverity.WARNING,null,mono.AlarmSeverity.MINOR],
 	},{
 		type: 'post',
-		translate: [-200, 100, -660],
+		translate: [-200, 100, -685],
 		width: 70,
 		height: 120,
 		pic: demo.getRes('post.jpg'),
