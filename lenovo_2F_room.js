@@ -3751,7 +3751,7 @@ var dataJson={
 //			translate: [200, 30, 650],
 			translate: [500, 0, 100],  //   -------------- ok one
 			width: 1050,
-			height: 220,
+			height: 200,
 			depth: 50, 
 			r: Math.PI,
 		},
@@ -3799,7 +3799,7 @@ var dataJson={
 			type: 'window',
 			translate: [300, 0, 100],  //---------------
 			width: 1600,
-			height: 220,
+			height: 200,
 			depth: 50, 
 			r: Math.PI,
 		},
@@ -3840,7 +3840,7 @@ var dataJson={
 			type: 'window',
 			translate: [750, 0, 0],  //----------------
 			width: 500,
-			height: 220,
+			height: 200,
 			depth: 50, 
 			r: 0
 		},
@@ -3859,7 +3859,7 @@ var dataJson={
 			type: 'window',
 			translate: [750, 0, 0],  //----------------
 			width: 500,
-			height: 220,
+			height: 200,
 			depth: 50, 
 			r: 0
 		},
